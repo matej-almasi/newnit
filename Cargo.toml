@@ -7,7 +7,3 @@ repository = ""
 readme = "README.MD"
 license = "MIT OR Apache-2.0"
 keywords = []
-
-[[bin]]
-name = ""
-path = "src/main.rs"
