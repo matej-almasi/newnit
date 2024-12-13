@@ -5,8 +5,20 @@
         "+nightly"
     ],
     "cSpell.words": [
+        "Attogram",
+        "Exagram",
+        "Femtogram",
+        "Gigatonne",
+        "Kilotonne",
+        "Megatonne",
+        "Nanogram",
         "newnit",
+        "Petagram",
+        "Picogram",
         "serde",
-        "thiserror"
+        "Teragram",
+        "Teratonne",
+        "thiserror",
+        "Zettagram"
     ]
 }
