@@ -40,14 +40,25 @@ pub trait Unit: Sized + From<f64> {
 ///
 /// Other standard library traits are implemented or derived, most notably:
 /// - [`From`] - enabling conversions between units of the same quantity
+/// - [`Add`] - overloading the addition `+` operator
 ///
-/// # Example
+/// [`Add`]: std::ops::Add
+///
+/// # Examples
+///
+/// Define and convert between different units of mass:
 /// ```
 /// use newnit::{unit, Unit};
 /// pub trait Mass {}
 ///
+/// // Define two units of mass...
 /// unit!(Kilogram, 1.0, Mass);
 /// unit!(Ounce, 0.028_349_523_1, Mass);
+///
+/// // ... and convert between them
+/// let kilograms = Kilogram(1.0);
+/// let ounces = Ounce::from(&kilograms);
+/// assert!((ounces.as_value() - 35.2740) < 1e-4);
 /// ```
 #[macro_export]
 macro_rules! unit {
