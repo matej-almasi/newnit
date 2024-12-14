@@ -79,5 +79,16 @@ macro_rules! unit {
                 Self::from_base(other.to_base())
             }
         }
+
+        impl<T> std::ops::Add<&T> for $name
+        where
+            T: Unit + $quantity_trait,
+        {
+            type Output = Self;
+
+            fn add(self, other: &T) -> Self::Output {
+                Self::from_base(self.to_base() + other.to_base())
+            }
+        }
     };
 }
