@@ -40,6 +40,7 @@ pub trait Unit: Sized + From<f64> {
 ///
 /// # Example
 /// ```
+/// use newnit::{unit, Unit};
 /// pub trait Mass {}
 ///
 /// unit!(Kilogram, 1.0, Mass);
