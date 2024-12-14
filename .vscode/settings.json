@@ -13,6 +13,8 @@
         "Megatonne",
         "Nanogram",
         "newnit",
+        "newtype",
+        "newtypes",
         "Petagram",
         "Picogram",
         "serde",
