@@ -35,8 +35,11 @@ pub trait Unit: Sized + From<f64> {
 /// Define a new unit of measurement.
 ///
 /// Defines a newtype struct with the given `name`, implementing the [`Unit`]
-/// trait (using the provided `factor`), and the `quantity_trait`, signifying
-/// the quantity measured by the unit.
+/// trait (using the provided `factor`) and the `quantity_trait` marker,
+/// signifying the quantity measured by the unit.
+///
+/// Other standard library traits are implemented or derived, most notably:
+/// - [`From`] - enabling conversions between units of the same quantity
 ///
 /// # Example
 /// ```
@@ -67,5 +70,14 @@ macro_rules! unit {
         }
 
         impl $quantity_trait for $name {}
+
+        impl<T> From<&T> for $name
+        where
+            T: Unit + $quantity_trait,
+        {
+            fn from(other: &T) -> Self {
+                Self::from_base(other.to_base())
+            }
+        }
     };
 }

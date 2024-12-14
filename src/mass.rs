@@ -1,10 +1,6 @@
 use super::{unit, Unit};
 
-pub trait Mass: Unit {
-    fn from_mass(other: &impl Mass) -> Self {
-        Unit::from_base(other.to_base())
-    }
-}
+pub trait Mass {}
 
 // Metric units
 unit!(Zettagram, 1E+18, Mass);
@@ -27,5 +23,3 @@ pub type Kilotonne = Gigagram;
 pub type Megatonne = Teragram;
 pub type Gigatonne = Petagram;
 pub type Teratonne = Exagram;
-
-// Imperial units
