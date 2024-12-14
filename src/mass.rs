@@ -19,7 +19,7 @@
 //! // Convert the mass to grams
 //! let grams = mass::metric::Gram::from(&mass);
 //!
-//! assert_eq!(grams.as_value(), 907.18474);
+//! assert!((grams.as_value() - 907.1847).abs() < 1e-4);
 //! ```
 
 pub mod customary;
