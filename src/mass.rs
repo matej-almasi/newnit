@@ -1,25 +1,30 @@
-use super::{unit, Unit};
+//! Units of mass.
+//!
+//! This module contains predefined newtypes for units of mass as defined in the
+//! following systems:
+//! - [`customary`] - US customary units
+//! - [`imperial`] - British imperial units
+//! - [`metric`] - International System of Units (SI)
+//!
+//! The base used for all systems is the (metric) kilogram.
+//!
+//! # Examples
+//! ```
+//! use newnit::mass::{self, Mass};
+//! use newnit::Unit;
+//!
+//! // Create a new mass value in pounds
+//! let mass = mass::imperial::Pound(2.0);
+//!
+//! // Convert the mass to grams
+//! let grams = mass::metric::Gram::from_mass(&mass);
+//!
+//! assert_eq!(grams.as_value(), 907.18474);
+//! ```
 
+pub mod customary;
+pub mod imperial;
+pub mod metric;
+
+/// Marker trait for mass units.
 pub trait Mass {}
-
-// Metric units
-unit!(Zettagram, 1E+18, Mass);
-unit!(Exagram, 1E+15, Mass);
-unit!(Petagram, 1E+12, Mass);
-unit!(Teragram, 1E+9, Mass);
-unit!(Gigagram, 1E+6, Mass);
-unit!(Megagram, 1E+3, Mass);
-unit!(Kilogram, 1E+0, Mass);
-unit!(Gram, 1E-3, Mass);
-unit!(Milligram, 1E-6, Mass);
-unit!(Microgram, 1E-9, Mass);
-unit!(Nanogram, 1E-12, Mass);
-unit!(Picogram, 1E-15, Mass);
-unit!(Femtogram, 1E-18, Mass);
-unit!(Attogram, 1E-21, Mass);
-
-pub type Tonne = Megagram;
-pub type Kilotonne = Gigagram;
-pub type Megatonne = Teragram;
-pub type Gigatonne = Petagram;
-pub type Teratonne = Exagram;
