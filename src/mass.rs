@@ -17,7 +17,7 @@
 //! let mass = mass::imperial::Pound(2.0);
 //!
 //! // Convert the mass to grams
-//! let grams = mass::metric::Gram::from_mass(&mass);
+//! let grams = mass::metric::Gram::from(&mass);
 //!
 //! assert_eq!(grams.as_value(), 907.18474);
 //! ```
