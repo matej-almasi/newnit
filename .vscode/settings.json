@@ -17,10 +17,17 @@
         "newtypes",
         "Petagram",
         "Picogram",
+        "Quectogram",
+        "Quettagram",
+        "Ronnagram",
+        "Rontogram",
         "serde",
         "Teragram",
         "Teratonne",
         "thiserror",
+        "Yoctogram",
+        "Yottagram",
+        "Zeptogram",
         "Zettagram"
     ]
 }
