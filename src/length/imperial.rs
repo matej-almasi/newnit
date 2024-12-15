@@ -1,7 +1,7 @@
 //! British Imperial units of length
 //!
 //! This module contains predefined newtypes for units of length as defined in
-//! the British Imperial system. The base unit is the metric meter.
+//! the British Imperial system. The base unit is the meter.
 
 use super::Length;
 use crate::unit;
