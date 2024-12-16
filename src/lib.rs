@@ -4,6 +4,7 @@
 //! [newtype]: https://rust-unofficial.github.io/patterns/patterns/behavioural/newtype.html
 
 pub mod area;
+pub mod current;
 pub mod length;
 pub mod mass;
 pub mod time;
