@@ -39,7 +39,10 @@ pub trait Unit: Sized + From<f64> {
 ///
 /// Defines a newtype struct with the given `name`, implementing the [`Unit`]
 /// trait (using the provided `factor`) and the `quantity_trait` marker,
-/// signifying the quantity measured by the unit.
+/// signifying the quantity measured by the unit. `$factor` and `$offset` will
+/// be used for trait constants [`Unit::FACTOR`] and [`Unit::OFFSET`] defining
+/// the conversion from/ to the base unit (see [`Unit::to_base()`] and
+/// [`Unit::from_base()`]).
 ///
 /// Other standard library traits are implemented or derived, most notably:
 /// - [`From`] - enabling conversions between units of the same quantity
