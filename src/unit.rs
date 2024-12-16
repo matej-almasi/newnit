@@ -55,8 +55,8 @@ pub trait Unit: Sized + From<f64> {
 /// pub trait Mass {}
 ///
 /// // Define two units of mass...
-/// unit!(Kilogram, 1.0, Mass);
-/// unit!(Ounce, 0.028_349_523_1, Mass);
+/// unit!(Kilogram, 1.0, 0.0, Mass);
+/// unit!(Ounce, 0.028_349_523_1, 0.0, Mass);
 ///
 /// // ... and convert between them
 /// let kilograms = Kilogram(1.0);
