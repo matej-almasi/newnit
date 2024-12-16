@@ -1,7 +1,11 @@
 //! Units of time.
 //!
 //! This module contains predefined newtypes for units of time as defined in
-//! the International System of Units (SI).
+//! the International System of Units (SI). The base unit is the [`Second`].
+//!
+//! [`Second`]: metric::Second
+
+pub trait Time {}
 
 pub mod metric {
     use super::Time;
@@ -37,5 +41,3 @@ pub mod metric {
     unit!(Day, 86_400.0, 0.0, Time);
     unit!(Week, 604_800.0, 0.0, Time);
 }
-
-pub trait Time {}
