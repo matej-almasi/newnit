@@ -6,6 +6,7 @@
 pub mod area;
 pub mod length;
 pub mod mass;
+pub mod time;
 pub mod unit;
 pub mod volume;
 
