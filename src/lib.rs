@@ -7,5 +7,6 @@ pub mod area;
 pub mod length;
 pub mod mass;
 pub mod unit;
+pub mod volume;
 
 pub use unit::Unit;
