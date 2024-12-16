@@ -15,20 +15,23 @@
 pub trait Unit: Sized + From<f64> {
     /// Conversion factor to the base unit.
     const FACTOR: f64;
+    const OFFSET: f64;
 
     /// Get the [`f64`] value stored in the unit.
     fn as_value(&self) -> f64;
 
     /// Convert this unit to the base unit, such that:  
-    /// {base} = {value} * {[`FACTOR`](Unit::FACTOR)}
+    /// {base} =
+    ///   {value} * {[`FACTOR`](Unit::FACTOR)} + {[`OFFSET`](Unit::OFFSET)}
     fn to_base(&self) -> f64 {
-        self.as_value() * Self::FACTOR
+        self.as_value() * Self::FACTOR + Self::OFFSET
     }
 
     /// Convert a base unit to this unit, such that:  
-    /// {value} = {base} / {[`FACTOR`](Unit::FACTOR)}
+    /// {value} =
+    ///   ({base} - {[`OFFSET`](Unit::OFFSET)}) / {[`FACTOR`](Unit::FACTOR)}
     fn from_base(base: f64) -> Self {
-        Self::from(base / Self::FACTOR)
+        Self::from((base - Self::OFFSET) / Self::FACTOR)
     }
 }
 
@@ -62,7 +65,7 @@ pub trait Unit: Sized + From<f64> {
 /// ```
 #[macro_export]
 macro_rules! unit {
-    ($name:ident, $factor: expr, $quantity_trait:ident) => {
+    ($name:ident, $factor: expr, $offset: expr, $quantity_trait:ident) => {
         #[derive(Debug, Clone, Copy)]
         pub struct $name(pub f64);
 
@@ -74,6 +77,7 @@ macro_rules! unit {
 
         impl Unit for $name {
             const FACTOR: f64 = $factor;
+            const OFFSET: f64 = $offset;
 
             fn as_value(&self) -> f64 {
                 self.0
