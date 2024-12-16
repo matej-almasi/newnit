@@ -40,4 +40,9 @@ unit!(CubicQuectoMeter, 1E-90, 0.0, Volume);
 unit!(CubicAngstrom, 1E-30, 0.0, Volume);
 
 // Non-trivial units
+unit!(HectoLiter, 1e-1, 0.0, Volume);
 pub type Liter = CubicDeciMeter;
+unit!(DeciLiter, 1e-4, 0.0, Volume);
+unit!(CentiLiter, 1e-5, 0.0, Volume);
+pub type MilliLiter = CubicCentiMeter;
+pub type MicroLiter = CubicMilliMeter;
