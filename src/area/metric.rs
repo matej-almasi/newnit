@@ -11,7 +11,8 @@ use super::Area;
 use crate::unit;
 use crate::Unit;
 
-unit!(SquareSquareQuettaMeter, 1E+60, Area);
+// Trivial squares of units of length
+unit!(SquareQuettaMeter, 1E+60, Area);
 unit!(SquareRonnaMeter, 1E+54, Area);
 unit!(SquareYottaMeter, 1E+48, Area);
 unit!(SquareZettaMeter, 1E+42, Area);
@@ -37,5 +38,6 @@ unit!(SquareQuectoMeter, 1E-60, Area);
 
 unit!(SquareAngstrom, 1E-20, Area);
 
+// Non-trivial units
 unit!(Are, 1E+2, Area);
 unit!(HectAre, 1E+4, Area);
