@@ -98,6 +98,15 @@ macro_rules! unit {
             }
         }
 
+        impl<T> std::cmp::PartialEq<T> for $name
+        where
+            T: Unit + $quantity_trait,
+        {
+            fn eq(&self, other: &T) -> bool {
+                self.to_base() == other.to_base()
+            }
+        }
+
         impl<T> std::ops::Add<&T> for $name
         where
             T: Unit + $quantity_trait,
