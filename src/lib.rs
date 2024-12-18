@@ -7,6 +7,7 @@ pub mod area;
 pub mod current;
 pub mod length;
 pub mod mass;
+pub mod substance_amount;
 pub mod temperature;
 pub mod time;
 pub mod unit;
