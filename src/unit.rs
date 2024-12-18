@@ -129,6 +129,14 @@ macro_rules! unit {
             }
         }
 
+        impl std::ops::Neg for $name {
+            type Output = Self;
+
+            fn neg(self) -> Self::Output {
+                Self(-self.0)
+            }
+        }
+
         impl<T> std::ops::Sub<&T> for $name
         where
             T: Unit + $quantity_trait,
