@@ -1,7 +1,8 @@
 //! Units of substance amount.
 //!
-//! This module contains predefined newtypes for units of substance as defined
-//! in the International System of Units (SI). The base unit is the [`Mole`].
+//! This module contains predefined newtypes for units of substance amount as
+//! defined in the International System of Units (SI). The base unit is the
+//! [`Mole`].
 //!
 //! [`Mole`]: metric::Mole
 
