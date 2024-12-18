@@ -69,7 +69,7 @@ pub trait Unit: Sized + From<f64> {
 #[macro_export]
 macro_rules! unit {
     ($name:ident, $factor: expr, $offset: expr, $quantity_trait:ident) => {
-        #[derive(Debug, Clone, Copy)]
+        #[derive(Debug, Clone, Copy, Default)]
         pub struct $name(pub f64);
 
         impl From<f64> for $name {
