@@ -109,6 +109,15 @@ macro_rules! unit {
             }
         }
 
+        impl<T> std::ops::AddAssign<&T> for $name
+        where
+            T: Unit + $quantity_trait,
+        {
+            fn add_assign(&mut self, other: &T) {
+                self.0 = Self::from_base(self.to_base() + other.to_base()).as_value();
+            }
+        }
+
         impl<T> std::ops::Sub<&T> for $name
         where
             T: Unit + $quantity_trait,
