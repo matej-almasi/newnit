@@ -147,5 +147,14 @@ macro_rules! unit {
                 Self::from_base(self.to_base() - other.to_base())
             }
         }
+
+        impl<T> std::ops::SubAssign<&T> for $name
+        where
+            T: Unit + $quantity_trait,
+        {
+            fn sub_assign(&mut self, other: &T) {
+                self.0 = Self::from_base(self.to_base() - other.to_base()).as_value();
+            }
+        }
     };
 }
