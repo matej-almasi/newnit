@@ -6,6 +6,7 @@
 pub mod area;
 pub mod current;
 pub mod length;
+pub mod luminous_intensity;
 pub mod mass;
 pub mod substance_amount;
 pub mod temperature;
