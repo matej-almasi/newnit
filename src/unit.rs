@@ -107,6 +107,12 @@ macro_rules! unit {
             }
         }
 
+        impl std::fmt::Display for $name {
+            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                write!(f, "{}", self.0)
+            }
+        }
+
         impl<T> std::ops::Add<&T> for $name
         where
             T: Unit + $quantity_trait,
