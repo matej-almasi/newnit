@@ -118,6 +118,17 @@ macro_rules! unit {
             }
         }
 
+        impl<T> std::ops::Div<&T> for $name
+        where
+            T: Unit + $quantity_trait,
+        {
+            type Output = f64;
+
+            fn div(self, other: &T) -> Self::Output {
+                self.to_base() / other.to_base()
+            }
+        }
+
         impl<T> std::ops::Sub<&T> for $name
         where
             T: Unit + $quantity_trait,
