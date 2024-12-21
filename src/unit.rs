@@ -66,7 +66,7 @@ macro_rules! unit {
             }
 
             fn value(&self) -> f64 {
-                self.value()
+                self.0
             }
         }
 
