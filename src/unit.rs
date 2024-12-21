@@ -61,8 +61,6 @@ macro_rules! unit {
         }
 
         impl Unit for $name {
-            /// Converts the quantity value represented in this unit to its equivalent
-            /// value in the base unit.
             fn to_base(&self) -> f64 {
                 self.0 * $factor + $offset
             }
