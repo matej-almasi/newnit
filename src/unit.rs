@@ -43,7 +43,7 @@ pub trait Unit {
 /// // ... and convert between them
 /// let kilograms = Kilogram(1.0);
 /// let ounces = Ounce::from(&kilograms);
-/// assert!((ounces.0 - 35.2740) < 1e-4);
+/// assert!((ounces.value() - 35.2740) < 1e-4);
 /// ```
 #[macro_export]
 macro_rules! unit {
@@ -62,11 +62,11 @@ macro_rules! unit {
 
         impl Unit for $name {
             fn to_base(&self) -> f64 {
-                self.0 * $factor + $offset
+                self.value() * $factor + $offset
             }
 
             fn value(&self) -> f64 {
-                self.0
+                self.value()
             }
         }
 
@@ -92,7 +92,7 @@ macro_rules! unit {
 
         impl std::fmt::Display for $name {
             fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                write!(f, "{}", self.0)
+                write!(f, "{}", self.value())
             }
         }
 
@@ -112,7 +112,7 @@ macro_rules! unit {
             T: Unit + $quantity_trait,
         {
             fn add_assign(&mut self, other: &T) {
-                self.0 = Self::from_base(self.to_base() + other.to_base()).0;
+                self.0 = Self::from_base(self.to_base() + other.to_base()).value();
             }
         }
 
@@ -131,7 +131,7 @@ macro_rules! unit {
             type Output = Self;
 
             fn neg(self) -> Self::Output {
-                Self(-self.0)
+                Self(-self.value())
             }
         }
 
@@ -151,7 +151,7 @@ macro_rules! unit {
             T: Unit + $quantity_trait,
         {
             fn sub_assign(&mut self, other: &T) {
-                self.0 = Self::from_base(self.to_base() - other.to_base()).0;
+                self.0 = Self::from_base(self.to_base() - other.to_base()).value();
             }
         }
     };
