@@ -14,6 +14,9 @@ pub trait Unit {
     /// Converts the quantity value represented in this unit to its equivalent
     /// value in the base unit.
     fn to_base(&self) -> f64;
+
+    /// Returns the wrapped [`f64`] value.
+    fn value(&self) -> f64;
 }
 
 /// Define a new unit of measurement.
@@ -62,6 +65,10 @@ macro_rules! unit {
             /// value in the base unit.
             fn to_base(&self) -> f64 {
                 self.0 * $factor + $offset
+            }
+
+            fn value(&self) -> f64 {
+                self.0
             }
         }
 
