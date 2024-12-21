@@ -2,63 +2,29 @@
 
 /// A unit of measurement.
 ///
-/// This trait is used to define units of measurement. It provides a simple
-/// conversion mechanism to convert from/ to the 'base' unit, which is arbitrary
-/// and up to the implementor (although choosing a SI base is a good idea).
+/// For the purpose of this crate, a unit of measurement is defined purely by
+/// its conversion to a base unit of the same quantity.
 ///
-/// From the point of view of the trait, a unit is defined by its
-/// name, and a conversion [`FACTOR`] to a 'base' unit. It is up to the
-/// implementor to additionally mark the implementing type with a trait defining
-/// its associated quantity (e.g. `Mass`, `Length`, etc.).
+/// The choice of the base unit is arbitrary and up to the implementor (although
+/// choosing a SI base is a good idea).
 ///
-/// [`FACTOR`]: Unit::FACTOR
+/// It is up to the implementor to additionally mark the implementing type with
+/// a trait defining its associated quantity (e.g. `Mass`, `Length`, etc.).
 pub trait Unit {
-    /// Conversion factor to the base unit.
-    const FACTOR: f64;
-    const OFFSET: f64;
-
-    /// Get the [`f64`] value stored in the unit.
-    fn as_value(&self) -> f64;
-
     /// Converts the quantity value represented in this unit to its equivalent
     /// value in the base unit.
-    ///
-    /// The conversion is defined by the formula:
-    ///  base_value = (value_in_unit * [`Unit::FACTOR`]) + [`Unit::OFFSET`]
-    ///
-    /// where value_in_unit is the quantity stored in the current unit.
-    fn to_base(&self) -> f64 {
-        self.as_value() * Self::FACTOR + Self::OFFSET
-    }
-
-    /// Converts the quantity value represented in base unit to its equivalent
-    /// value in this unit.
-    ///
-    /// The conversion is defined by the formula:
-    ///
-    /// value_in_unit =
-    ///   (base_value - [`OFFSET`](Unit::OFFSET)) / [`FACTOR`](Unit::FACTOR)
-    ///
-    /// where base_value is the quantity in the base unit.
-    fn from_base(base: f64) -> f64 {
-        (base - Self::OFFSET) / Self::FACTOR
-    }
+    fn to_base(&self) -> f64;
 }
 
 /// Define a new unit of measurement.
 ///
 /// Defines a newtype struct with the given `name`, implementing the [`Unit`]
-/// trait (using the provided `factor`) and the `quantity_trait` marker,
-/// signifying the quantity measured by the unit. `$factor` and `$offset` will
-/// be used for trait constants [`Unit::FACTOR`] and [`Unit::OFFSET`] defining
-/// the conversion from/ to the base unit (see [`Unit::to_base()`] and
-/// [`Unit::from_base()`]).
+/// trait and the `quantity_trait` marker, signifying the quantity measured by
+/// the unit.
 ///
-/// Other standard library traits are implemented or derived, most notably:
-/// - [`From`] - enabling conversions between units of the same quantity
-/// - [`Add`] - overloading the addition `+` operator
-///
-/// [`Add`]: std::ops::Add
+/// `$factor` and `$offset` are used for conversions between the new unit and
+/// the base unit of the same quantity, defined as follows:
+///   value_in_base_unit = value_in_this_unit * `$factor` + `$offset`
 ///
 /// # Examples
 ///
@@ -74,7 +40,7 @@ pub trait Unit {
 /// // ... and convert between them
 /// let kilograms = Kilogram(1.0);
 /// let ounces = Ounce::from(&kilograms);
-/// assert!((ounces.as_value() - 35.2740) < 1e-4);
+/// assert!((ounces.0 - 35.2740) < 1e-4);
 /// ```
 #[macro_export]
 macro_rules! unit {
@@ -83,18 +49,19 @@ macro_rules! unit {
         #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
         pub struct $name(pub f64);
 
-        impl From<f64> for $name {
-            fn from(value: f64) -> Self {
-                Self(value)
+        impl $name {
+            /// Create a representation of a quantity expressed in this unit from its
+            /// representation expressed in base units.
+            fn from_base(base: f64) -> Self {
+                Self((base - $offset) / $factor)
             }
         }
 
         impl Unit for $name {
-            const FACTOR: f64 = $factor;
-            const OFFSET: f64 = $offset;
-
-            fn as_value(&self) -> f64 {
-                self.0
+            /// Converts the quantity value represented in this unit to its equivalent
+            /// value in the base unit.
+            fn to_base(&self) -> f64 {
+                self.0 * $factor + $offset
             }
         }
 
@@ -105,7 +72,7 @@ macro_rules! unit {
             T: Unit + $quantity_trait,
         {
             fn from(other: &T) -> Self {
-                Self(Self::from_base(other.to_base()))
+                Self::from_base(other.to_base())
             }
         }
 
@@ -131,7 +98,7 @@ macro_rules! unit {
             type Output = Self;
 
             fn add(self, other: &T) -> Self::Output {
-                Self(Self::from_base(self.to_base() + other.to_base()))
+                Self::from_base(self.to_base() + other.to_base())
             }
         }
 
@@ -140,7 +107,7 @@ macro_rules! unit {
             T: Unit + $quantity_trait,
         {
             fn add_assign(&mut self, other: &T) {
-                self.0 = Self::from_base(self.to_base() + other.to_base());
+                self.0 = Self::from_base(self.to_base() + other.to_base()).0;
             }
         }
 
@@ -170,7 +137,7 @@ macro_rules! unit {
             type Output = Self;
 
             fn sub(self, other: &T) -> Self::Output {
-                Self(Self::from_base(self.to_base() - other.to_base()))
+                Self::from_base(self.to_base() - other.to_base())
             }
         }
 
@@ -179,7 +146,7 @@ macro_rules! unit {
             T: Unit + $quantity_trait,
         {
             fn sub_assign(&mut self, other: &T) {
-                self.0 = Self::from_base(self.to_base() - other.to_base());
+                self.0 = Self::from_base(self.to_base() - other.to_base()).0;
             }
         }
     };

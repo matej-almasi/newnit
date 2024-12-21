@@ -23,13 +23,13 @@ mod test {
     fn from_celsius_to_kelvin() {
         let celsius = Celsius(12.4);
         let kelvin = Kelvin::from(&celsius);
-        assert!((kelvin.as_value() - 285.55).abs() < 0.001);
+        assert!((kelvin.0 - 285.55).abs() < 0.001);
     }
 
     #[test]
     fn from_celsius_to_fahrenheit() {
         let celsius = Celsius(42.24);
         let fahrenheit = Fahrenheit::from(&celsius);
-        assert!((fahrenheit.as_value() - 108.032).abs() < 0.0001);
+        assert!((fahrenheit.0 - 108.032).abs() < 0.0001);
     }
 }
