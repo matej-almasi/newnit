@@ -12,7 +12,7 @@
 /// its associated quantity (e.g. `Mass`, `Length`, etc.).
 ///
 /// [`FACTOR`]: Unit::FACTOR
-pub trait Unit: Sized + From<f64> {
+pub trait Unit {
     /// Conversion factor to the base unit.
     const FACTOR: f64;
     const OFFSET: f64;
@@ -20,18 +20,28 @@ pub trait Unit: Sized + From<f64> {
     /// Get the [`f64`] value stored in the unit.
     fn as_value(&self) -> f64;
 
-    /// Convert this unit to the base unit, such that:  
-    /// {base} =
-    ///   {value} * {[`FACTOR`](Unit::FACTOR)} + {[`OFFSET`](Unit::OFFSET)}
+    /// Converts the quantity value represented in this unit to its equivalent
+    /// value in the base unit.
+    ///
+    /// The conversion is defined by the formula:
+    ///  base_value = (value_in_unit * [`Unit::FACTOR`]) + [`Unit::OFFSET`]
+    ///
+    /// where value_in_unit is the quantity stored in the current unit.
     fn to_base(&self) -> f64 {
         self.as_value() * Self::FACTOR + Self::OFFSET
     }
 
-    /// Convert a base unit to this unit, such that:  
-    /// {value} =
-    ///   ({base} - {[`OFFSET`](Unit::OFFSET)}) / {[`FACTOR`](Unit::FACTOR)}
-    fn from_base(base: f64) -> Self {
-        Self::from((base - Self::OFFSET) / Self::FACTOR)
+    /// Converts the quantity value represented in base unit to its equivalent
+    /// value in this unit.
+    ///
+    /// The conversion is defined by the formula:
+    ///
+    /// value_in_unit =
+    ///   (base_value - [`OFFSET`](Unit::OFFSET)) / [`FACTOR`](Unit::FACTOR)
+    ///
+    /// where base_value is the quantity in the base unit.
+    fn from_base(base: f64) -> f64 {
+        (base - Self::OFFSET) / Self::FACTOR
     }
 }
 
@@ -95,7 +105,7 @@ macro_rules! unit {
             T: Unit + $quantity_trait,
         {
             fn from(other: &T) -> Self {
-                Self::from_base(other.to_base())
+                Self(Self::from_base(other.to_base()))
             }
         }
 
@@ -121,7 +131,7 @@ macro_rules! unit {
             type Output = Self;
 
             fn add(self, other: &T) -> Self::Output {
-                Self::from_base(self.to_base() + other.to_base())
+                Self(Self::from_base(self.to_base() + other.to_base()))
             }
         }
 
@@ -130,7 +140,7 @@ macro_rules! unit {
             T: Unit + $quantity_trait,
         {
             fn add_assign(&mut self, other: &T) {
-                self.0 = Self::from_base(self.to_base() + other.to_base()).as_value();
+                self.0 = Self::from_base(self.to_base() + other.to_base());
             }
         }
 
@@ -160,7 +170,7 @@ macro_rules! unit {
             type Output = Self;
 
             fn sub(self, other: &T) -> Self::Output {
-                Self::from_base(self.to_base() - other.to_base())
+                Self(Self::from_base(self.to_base() - other.to_base()))
             }
         }
 
@@ -169,7 +179,7 @@ macro_rules! unit {
             T: Unit + $quantity_trait,
         {
             fn sub_assign(&mut self, other: &T) {
-                self.0 = Self::from_base(self.to_base() - other.to_base()).as_value();
+                self.0 = Self::from_base(self.to_base() - other.to_base());
             }
         }
     };
