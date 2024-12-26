@@ -9,6 +9,8 @@
 
 use crate::area::metric::SquareMeter;
 use crate::area::Area;
+use crate::time::Time;
+use crate::velocity::metric::MeterPerSecond;
 use crate::volume::metric::CubicMeter;
 use crate::Unit;
 
@@ -19,8 +21,9 @@ pub mod nautical;
 
 /// Types that are units of length.
 ///
-/// Provides various multiplication methods, resulting in other units of
-/// quantity, based on the right hand side (`rhs`) in the multiplication.
+/// Provides various multiplication and division methods, resulting in other
+/// units of quantity, based on the right hand side (`rhs`) in the
+/// multiplication/ division.
 ///
 /// # Examples
 /// ```
@@ -43,6 +46,11 @@ pub trait Length: Unit {
     /// Multiply a unit of length with a unit of area.
     fn multiply_area(&self, rhs: &dyn Area) -> CubicMeter {
         CubicMeter(self.to_base() * rhs.to_base())
+    }
+
+    /// Divide a unit of length by a unit of time.
+    fn divide_time(&self, rhs: &dyn Time) -> MeterPerSecond {
+        MeterPerSecond(self.to_base() / rhs.to_base())
     }
 }
 
