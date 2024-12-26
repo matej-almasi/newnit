@@ -5,7 +5,9 @@
 //! - [`imperial`] - British Imperial units
 //! - [`metric`] - International System of Units (SI)
 
+use crate::Unit;
+
 pub mod imperial;
 pub mod metric;
 
-pub trait Area {}
+pub trait Area: Unit {}
