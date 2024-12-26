@@ -12,6 +12,7 @@ pub mod substance_amount;
 pub mod temperature;
 pub mod time;
 pub mod unit;
+pub mod velocity;
 pub mod volume;
 
 pub use unit::Unit;
