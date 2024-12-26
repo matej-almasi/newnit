@@ -75,4 +75,13 @@ mod test {
         let volume = length.multiply_area(&area);
         assert!((volume.value() - 2.58064e-3).abs() < 1e-9);
     }
+
+    #[test]
+    fn divide_by_time() {
+        let length = metric::Meter(2.0);
+        let time = crate::time::metric::Second(3.0);
+
+        let velocity = length.divide_time(&time);
+        assert!((velocity.value() - 0.66667).abs() < 1e-5);
+    }
 }
