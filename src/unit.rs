@@ -127,6 +127,20 @@ macro_rules! unit {
             }
         }
 
+        impl std::ops::Div<f64> for $name {
+            type Output = Self;
+
+            fn div(self, rhs: f64) -> Self::Output {
+                Self(self.value() / rhs)
+            }
+        }
+
+        impl std::ops::DivAssign<f64> for $name {
+            fn div_assign(&mut self, rhs: f64) {
+                self.0 /= rhs;
+            }
+        }
+
         impl std::ops::Mul<f64> for $name {
             type Output = Self;
 
