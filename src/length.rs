@@ -8,6 +8,8 @@
 //! - [`nautical`] - International nautical units
 
 use crate::area::metric::SquareMeter;
+use crate::area::Area;
+use crate::volume::metric::CubicMeter;
 use crate::Unit;
 
 pub mod astronomical;
@@ -37,6 +39,11 @@ pub trait Length: Unit {
     fn multiply(&self, rhs: &dyn Length) -> SquareMeter {
         SquareMeter(self.to_base() * rhs.to_base())
     }
+
+    /// Multiply a unit of length with a unit of area.
+    fn multiply_area(&self, rhs: &dyn Area) -> CubicMeter {
+        CubicMeter(self.to_base() * rhs.to_base())
+    }
 }
 
 #[cfg(test)]
@@ -50,5 +57,14 @@ mod test {
 
         let area = length1.multiply(&length2);
         assert!((area.value() - 1.8288).abs() < 1e-5);
+    }
+
+    #[test]
+    fn multiply_with_area() {
+        let length = metric::Meter(2.0);
+        let area = crate::area::imperial::SquareInch(2.0);
+
+        let volume = length.multiply_area(&area);
+        assert!((volume.value() - 2.58064e-3).abs() < 1e-9);
     }
 }
