@@ -9,8 +9,10 @@
 
 use crate::area::metric::SquareMeter;
 use crate::area::Area;
+use crate::time::metric::Second;
 use crate::time::Time;
 use crate::velocity::metric::MeterPerSecond;
+use crate::velocity::Velocity;
 use crate::volume::metric::CubicMeter;
 use crate::Unit;
 
@@ -52,6 +54,11 @@ pub trait Length: Unit {
     fn divide_time(&self, rhs: &dyn Time) -> MeterPerSecond {
         MeterPerSecond(self.to_base() / rhs.to_base())
     }
+
+    /// Divide a unit of length by a unit of velocity.
+    fn divide_velocity(&self, rhs: &dyn Velocity) -> Second {
+        Second(self.to_base() / rhs.to_base())
+    }
 }
 
 #[cfg(test)]
@@ -83,5 +90,14 @@ mod test {
 
         let velocity = length.divide_time(&time);
         assert!((velocity.value() - 0.66667).abs() < 1e-5);
+    }
+
+    #[test]
+    fn divide_by_velocity() {
+        let length = metric::Meter(2.0);
+        let velocity = crate::velocity::metric::MeterPerSecond(3.0);
+
+        let time = length.divide_velocity(&velocity);
+        assert!((time.value() - 0.66667).abs() < 1e-5);
     }
 }
