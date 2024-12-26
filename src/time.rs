@@ -5,7 +5,9 @@
 //!
 //! [`Second`]: metric::Second
 
-pub trait Time {}
+use crate::Unit;
+
+pub trait Time: Unit {}
 
 pub mod metric {
     use super::Time;
