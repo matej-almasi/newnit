@@ -5,9 +5,14 @@
 //!
 //! [`Second`]: metric::Second
 
-use crate::Unit;
+use crate::{length::metric::Meter, velocity::Velocity, Unit};
 
-pub trait Time: Unit {}
+pub trait Time: Unit {
+    /// Multiply a unit of time with a unit of velocity.
+    fn multiply_velocity(&self, rhs: &dyn Velocity) -> Meter {
+        Meter(self.to_base() * rhs.to_base())
+    }
+}
 
 pub mod metric {
     use super::Time;
