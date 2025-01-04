@@ -10,7 +10,7 @@
 //! - [`metric`] - International System of Units (SI)
 //! - [`nautical`] - International nautical units
 
-use crate::Unit;
+use crate::{length::metric::Meter, time::Time, Unit};
 
 pub mod astronomical;
 pub mod imperial;
@@ -21,4 +21,9 @@ pub mod nautical;
 ///
 /// Provides various multiplication/ division methods, resulting in other units
 /// of quantity, based on the right hand side (`rhs`) in the multiplication.
-pub trait Velocity: Unit {}
+pub trait Velocity: Unit {
+    /// Multiply a unit of velocity with a unit of time.
+    fn multiply_time(&self, rhs: &dyn Time) -> Meter {
+        Meter(self.to_base() * rhs.to_base())
+    }
+}
