@@ -149,6 +149,14 @@ macro_rules! unit {
             }
         }
 
+        impl std::ops::Mul<$name> for f64 {
+            type Output = $name;
+
+            fn mul(self, rhs: $name) -> Self::Output {
+                $name(self * rhs.value())
+            }
+        }
+
         impl std::ops::MulAssign<f64> for $name {
             fn mul_assign(&mut self, rhs: f64) {
                 self.0 *= rhs;
