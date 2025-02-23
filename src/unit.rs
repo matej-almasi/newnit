@@ -33,7 +33,7 @@ pub trait Unit {
 ///
 /// Define and convert between different units of mass:
 /// ```
-/// use newnit::{unit, Unit};
+/// use newnit::{Unit, unit};
 /// pub trait Mass {}
 ///
 /// // Define two units of mass...
@@ -43,7 +43,7 @@ pub trait Unit {
 /// // ... and convert between them
 /// let kilograms = Kilogram(1.0);
 /// let ounces = Ounce::from(&kilograms);
-/// assert!((ounces.value() - 35.2740) < 1e-4);
+/// assert!((ounces.value() - 35.2740) < 1e-5);
 /// ```
 #[macro_export]
 macro_rules! unit {

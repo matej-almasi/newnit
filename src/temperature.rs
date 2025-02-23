@@ -8,8 +8,7 @@
 
 pub trait Temperature {}
 
-pub use crate::unit;
-pub use crate::Unit;
+pub use crate::{Unit, unit};
 
 unit!(Kelvin, 1.0, 0.0, Temperature);
 unit!(Celsius, 1.0, 273.15, Temperature);
@@ -23,13 +22,13 @@ mod test {
     fn from_celsius_to_kelvin() {
         let celsius = Celsius(12.4);
         let kelvin = Kelvin::from(&celsius);
-        assert!((kelvin.value() - 285.55).abs() < 0.001);
+        assert!((kelvin.value() - 285.55).abs() < 1e-5);
     }
 
     #[test]
     fn from_celsius_to_fahrenheit() {
         let celsius = Celsius(42.24);
         let fahrenheit = Fahrenheit::from(&celsius);
-        assert!((fahrenheit.value() - 108.032).abs() < 0.0001);
+        assert!((fahrenheit.value() - 108.032).abs() < 1e-5);
     }
 }
