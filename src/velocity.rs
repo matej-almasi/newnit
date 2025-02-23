@@ -10,7 +10,9 @@
 //! - [`metric`] - International System of Units (SI)
 //! - [`nautical`] - International nautical units
 
-use crate::{length::metric::Meter, time::Time, Unit};
+use crate::Unit;
+use crate::length::metric::Meter;
+use crate::time::Time;
 
 pub mod astronomical;
 pub mod imperial;
@@ -25,5 +27,19 @@ pub trait Velocity: Unit {
     /// Multiply a unit of velocity with a unit of time.
     fn multiply_time(&self, rhs: &dyn Time) -> Meter {
         Meter(self.to_base() * rhs.to_base())
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn multiply_with_time() {
+        let velocity = metric::MeterPerSecond(2.0);
+        let time = crate::time::metric::Hour(3.0);
+
+        let length = velocity.multiply_time(&time);
+        assert!((length.value() - 21600.0).abs() < 1e-5);
     }
 }
