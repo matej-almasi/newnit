@@ -27,3 +27,26 @@ pub trait Volume: Unit {
         Meter(self.to_base() / rhs.to_base())
     }
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn divide_by_length() {
+        let volume = metric::CubicMeter(6.0);
+        let length = crate::length::imperial::Foot(3.0);
+
+        let area = volume.divide_length(&length);
+        assert!((area.value() - 6.5617).abs() < 5e-5);
+    }
+
+    #[test]
+    fn divide_by_area() {
+        let volume = metric::CubicMeter(4.0);
+        let area = crate::area::imperial::SquareInch(6.0);
+
+        let length = volume.divide_area(&area);
+        assert!((length.value() - 1033.3354).abs() < 5e-5);
+    }
+}
