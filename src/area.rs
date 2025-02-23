@@ -24,3 +24,26 @@ pub trait Area: Unit {
         Meter(self.to_base() / rhs.to_base())
     }
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn multiply_with_length() {
+        let area = metric::SquareMeter(2.0);
+        let length = crate::length::imperial::Foot(3.0);
+
+        let volume = area.multiply_length(&length);
+        assert!((volume.value() - 1.8288).abs() < 1e-5);
+    }
+
+    #[test]
+    fn divide_by_length() {
+        let area = metric::SquareMeter(2.0);
+        let length = crate::length::metric::Meter(4.0);
+
+        let result_length = area.divide_length(&length);
+        assert!((result_length.value() - 0.5).abs() < 1e-5);
+    }
+}
