@@ -5,7 +5,9 @@
 //!
 //! [`Second`]: metric::Second
 
-use crate::{length::metric::Meter, velocity::Velocity, Unit};
+use crate::Unit;
+use crate::length::metric::Meter;
+use crate::velocity::Velocity;
 
 pub trait Time: Unit {
     /// Multiply a unit of time with a unit of velocity.
@@ -16,8 +18,7 @@ pub trait Time: Unit {
 
 pub mod metric {
     use super::Time;
-    use crate::unit;
-    use crate::Unit;
+    use crate::{Unit, unit};
 
     unit!(QuettaSecond, 1E+30, 0.0, Time);
     unit!(RonnaSecond, 1E+27, 0.0, Time);
@@ -47,4 +48,18 @@ pub mod metric {
     unit!(Hour, 3600.0, 0.0, Time);
     unit!(Day, 86_400.0, 0.0, Time);
     unit!(Week, 604_800.0, 0.0, Time);
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn multiply_velocity() {
+        let time = metric::Hour(2.0);
+        let velocity = crate::velocity::imperial::MilePerHour(3.0);
+
+        let length = time.multiply_velocity(&velocity);
+        assert!((length.value() - 9656.064).abs() < 1e-5);
+    }
 }
