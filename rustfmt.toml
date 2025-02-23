@@ -17,3 +17,5 @@ space_after_colon = true
 spaces_around_ranges = false
 
 trailing_semicolon = true
+
+imports_granularity = "Module"
