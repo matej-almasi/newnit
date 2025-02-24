@@ -34,12 +34,11 @@ fn impl_unit(ast: &syn::DeriveInput) -> TokenStream {
                 self.0
             }
 
+            fn from_base(base: f64) -> Box<Self> {
+                Box::new(Self((base - #offset) / #factor))
+            }
         }
 
     };
     generated.into()
 }
-
-// fn from_base(base: f64) -> Self {
-//     Self((base - #offset) / #factor)
-// }

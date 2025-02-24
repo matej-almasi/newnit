@@ -17,6 +17,10 @@ pub trait Unit {
 
     /// Returns the wrapped [`f64`] value.
     fn value(&self) -> f64;
+
+    /// Create a representation of a quantity expressed in this unit from its
+    /// value in base units.
+    fn from_base(base: f64) -> Box<Self>;
 }
 
 /// Define a new unit of measurement.
@@ -52,14 +56,6 @@ macro_rules! unit {
         #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
         pub struct $name(pub f64);
 
-        impl $name {
-            /// Create a representation of a quantity expressed in this unit from its
-            /// representation expressed in base units.
-            fn from_base(base: f64) -> Self {
-                Self((base - $offset) / $factor)
-            }
-        }
-
         impl Unit for $name {
             fn to_base(&self) -> f64 {
                 self.value() * $factor + $offset
@@ -67,6 +63,10 @@ macro_rules! unit {
 
             fn value(&self) -> f64 {
                 self.0
+            }
+
+            fn from_base(base: f64) -> Box<Self> {
+                Box::new(Self((base - $offset) / $factor))
             }
         }
 
@@ -77,7 +77,7 @@ macro_rules! unit {
             T: Unit + $quantity_trait,
         {
             fn from(other: &T) -> Self {
-                Self::from_base(other.to_base())
+                *Self::from_base(other.to_base())
             }
         }
 
@@ -103,7 +103,7 @@ macro_rules! unit {
             type Output = Self;
 
             fn add(self, other: &T) -> Self::Output {
-                Self::from_base(self.to_base() + other.to_base())
+                *Self::from_base(self.to_base() + other.to_base())
             }
         }
 
@@ -178,7 +178,7 @@ macro_rules! unit {
             type Output = Self;
 
             fn sub(self, other: &T) -> Self::Output {
-                Self::from_base(self.to_base() - other.to_base())
+                *Self::from_base(self.to_base() - other.to_base())
             }
         }
 
