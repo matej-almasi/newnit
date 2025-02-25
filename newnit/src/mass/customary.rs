@@ -8,14 +8,10 @@
 //! used, where possible.
 
 use super::Mass;
-use crate::unit;
-use crate::Unit;
+use crate::{Unit, unit};
 
 // Troy units (precious metals)
-pub use super::imperial::Grain;
-pub use super::imperial::Pennyweight;
-pub use super::imperial::TroyOunce;
-pub use super::imperial::TroyPound;
+pub use super::imperial::{Grain, Pennyweight, TroyOunce, TroyPound};
 
 // Avoirdupois units
 
@@ -23,16 +19,15 @@ pub use super::imperial::TroyPound;
 pub type LongTon = super::imperial::LongTon;
 
 // short ton
-unit!(ShortTon, 907.184_74, 0.0, Mass);
+make_unit!(ShortTon, 907.184_74, 0.0, Mass);
 
 // long cwt
 pub type LongHundredweight = super::imperial::Hundredweight;
 
 // US cwt
-unit!(ShortHundredweight, 45.359_237, 0.0, Mass);
+make_unit!(ShortHundredweight, 45.359_237, 0.0, Mass);
 
-pub use super::imperial::Ounce;
-pub use super::imperial::Pound;
+pub use super::imperial::{Ounce, Pound};
 
 // dr
 pub type Dram = super::imperial::Drachm;

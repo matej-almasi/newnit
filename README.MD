@@ -133,13 +133,13 @@ units (or quantities) compatible with the rest of the library, you have to:
   - make sure your conversions to/ from the base unit match the ones in the
     library
 
-To make defining custom units easier, use the `unit!` macro:
+To make defining custom units easier, use the `make_unit!` macro:
 
 ```rust
 use newnit::unit;
 use newnit::mass::Mass;
 
-unit!(Elephants, 6000.0, 0.0, Mass);
+make_unit!(Elephants, 6000.0, 0.0, Mass);
 ```
 
 ## Installation

@@ -7,6 +7,6 @@ use super::Length;
 use crate::unit;
 use crate::Unit;
 
-unit!(Fathom, 1.828_8, 0.0, Length);
-unit!(Cable, 219.456, 0.0, Length);
-unit!(Mile, 1852.0, 0.0, Length);
+make_unit!(Fathom, 1.828_8, 0.0, Length);
+make_unit!(Cable, 219.456, 0.0, Length);
+make_unit!(Mile, 1852.0, 0.0, Length);
