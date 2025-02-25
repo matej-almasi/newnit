@@ -13,11 +13,13 @@ struct UnitArgs {
 
 #[proc_macro_derive(Unit, attributes(unit))]
 pub fn unit_derive(input: TokenStream) -> TokenStream {
+    // TODO: better error message
     let ast = syn::parse(input).expect("Failed to parse input code.");
     impl_unit(&ast)
 }
 
 fn impl_unit(ast: &syn::DeriveInput) -> TokenStream {
+    // TODO: better error message
     let args = UnitArgs::from_derive_input(ast).expect("Missing factor for unit conversion.");
 
     let name = &ast.ident;
