@@ -7,7 +7,7 @@
 
 use super::Length;
 use crate::Unit;
-use newnit_derive::Unit;
+use newnit_derive::{Length, Unit};
 // use crate::{Unit, unit};
 
 // unit!(QuettaMeter, 1E+30, 0.0, Length);
@@ -22,9 +22,9 @@ use newnit_derive::Unit;
 // unit!(KiloMeter, 1E+3, 0.0, Length);
 // unit!(Meter, 1.0, 0.0, Length);
 
-#[derive(Unit, Debug, Clone, Copy, Default)]
+#[derive(Unit, Length, Debug, Clone, Copy, Default)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[unit(factor = 1.0)]
+#[unit(factor = 1.0, display)]
 pub struct Meter(pub f64);
 
 // unit!(DeciMeter, 1E-1, 0.0, Length);
