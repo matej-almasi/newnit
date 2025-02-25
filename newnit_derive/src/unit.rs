@@ -9,6 +9,9 @@ struct UnitArgs {
 
     #[darling(default)] // Default to 0.0 if missing
     offset: f64,
+
+    #[darling(default)]
+    display: bool,
 }
 
 pub fn derive(ast: &syn::DeriveInput) -> TokenStream {
@@ -18,6 +21,17 @@ pub fn derive(ast: &syn::DeriveInput) -> TokenStream {
     let name = &ast.ident;
     let factor = args.factor;
     let offset = args.offset;
+
+    let impl_display = args.display.then(|| {
+        quote! {
+            impl std::fmt::Display for #name {
+                fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                    write!(f, "{} {}", self.value(), stringify!(#name))
+                }
+            }
+
+        }
+    });
 
     let generated = quote! {
         impl Unit for #name {
@@ -33,6 +47,8 @@ pub fn derive(ast: &syn::DeriveInput) -> TokenStream {
                 Box::new(Self((base - #offset) / #factor))
             }
         }
+
+        #impl_display
 
     };
     generated.into()
