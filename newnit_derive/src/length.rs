@@ -19,9 +19,11 @@ pub fn derive(ast: &syn::DeriveInput) -> TokenStream {
 
     let name = &ast.ident;
 
+    let this_trait = "Length";
+
     let impl_from = args.from.then(|| {
         quote! {
-            impl<T: Length> From<&T> for #name {
+            impl<T: #this_trait> From<&T> for #name {
                 fn from(other: &T) -> Self {
                     *Self::from_base(other.to_base())
                 }
@@ -31,7 +33,7 @@ pub fn derive(ast: &syn::DeriveInput) -> TokenStream {
 
     let impl_partial_eq = args.partial_eq.then(|| {
         quote! {
-            impl<T: Length> std::cmp::PartialEq<T> for #name {
+            impl<T: #this_trait> std::cmp::PartialEq<T> for #name {
                 fn eq(&self, other: &T) -> bool {
                     self.to_base() == other.to_base()
                 }
@@ -41,7 +43,7 @@ pub fn derive(ast: &syn::DeriveInput) -> TokenStream {
 
     let impl_ops = args.ops.then(|| {
         quote! {
-            impl<T: Length> std::ops::Add<&T> for #name {
+            impl<T: #this_trait> std::ops::Add<&T> for #name {
                 type Output = Self;
 
                 fn add(self, other: &T) -> Self::Output {
@@ -49,13 +51,13 @@ pub fn derive(ast: &syn::DeriveInput) -> TokenStream {
                 }
             }
 
-            impl<T: Length> std::ops::AddAssign<&T> for #name {
+            impl<T: #this_trait> std::ops::AddAssign<&T> for #name {
                 fn add_assign(&mut self, other: &T) {
                     self.0 = Self::from_base(self.to_base() + other.to_base()).value();
                 }
             }
 
-            impl<T: Length> std::ops::Div<&T> for #name {
+            impl<T: #this_trait> std::ops::Div<&T> for #name {
                 type Output = f64;
 
                 fn div(self, other: &T) -> Self::Output {
@@ -107,7 +109,7 @@ pub fn derive(ast: &syn::DeriveInput) -> TokenStream {
                 }
             }
 
-            impl<T: Length> std::ops::Sub<&T> for #name {
+            impl<T: #this_trait> std::ops::Sub<&T> for #name {
                 type Output = Self;
 
                 fn sub(self, other: &T) -> Self::Output {
@@ -125,7 +127,7 @@ pub fn derive(ast: &syn::DeriveInput) -> TokenStream {
     });
 
     let generated = quote! {
-        impl Length for #name {}
+        impl #this_trait for #name {}
 
         #impl_from
 
@@ -134,5 +136,6 @@ pub fn derive(ast: &syn::DeriveInput) -> TokenStream {
         #impl_ops
 
     };
+
     generated.into()
 }
