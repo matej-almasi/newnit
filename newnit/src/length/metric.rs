@@ -6,9 +6,8 @@
 //! Additional definition provided for the Ångström (Å) = 1E-10 m.
 
 use super::Length;
-use crate::Unit;
+use crate::{Unit, make_unit};
 use newnit_derive::{Length, Unit};
-// use crate::{Unit, unit};
 
 // unit!(QuettaMeter, 1E+30, 0.0, Length);
 // unit!(RonnaMeter, 1E+27, 0.0, Length);
@@ -20,13 +19,7 @@ use newnit_derive::{Length, Unit};
 // unit!(GigaMeter, 1E+9, 0.0, Length);
 // unit!(MegaMeter, 1E+6, 0.0, Length);
 // unit!(KiloMeter, 1E+3, 0.0, Length);
-// unit!(Meter, 1.0, 0.0, Length);
-
-#[derive(Unit, Length, Debug, Clone, Copy, Default)]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[unit(factor = 1.0, display)]
-pub struct Meter(pub f64);
-
+make_unit!(Meter, 1.0, 0.0, Length);
 // unit!(DeciMeter, 1E-1, 0.0, Length);
 // unit!(CentiMeter, 1E-2, 0.0, Length);
 // unit!(MilliMeter, 1E-3, 0.0, Length);
