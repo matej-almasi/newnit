@@ -43,8 +43,8 @@ pub fn derive(ast: &syn::DeriveInput) -> TokenStream {
                 self.0
             }
 
-            fn from_base(base: f64) -> Box<Self> {
-                Box::new(Self((base - #offset) / #factor))
+            fn from_base(base: f64) -> Self {
+                Self((base - #offset) / #factor)
             }
         }
 
