@@ -63,8 +63,6 @@ pub trait Length: Unit {
     // }
 }
 
-impl<T> From<&dyn Length> for T {}
-
 // #[cfg(test)]
 // mod test {
 //     use super::*;
