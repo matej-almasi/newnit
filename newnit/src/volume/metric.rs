@@ -9,8 +9,8 @@
 //! Additional aliases provided for commonly used alternative unit names.
 
 use super::Volume;
-use crate::unit;
-use crate::Unit;
+use crate::{Unit, make_unit};
+use newnit_derive::{Unit, Volume};
 
 // Trivial cubes of units of length
 make_unit!(CubicQuettaMeter, 1E+90, 0.0, Volume);

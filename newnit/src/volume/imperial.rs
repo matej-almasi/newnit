@@ -4,17 +4,17 @@
 //! the British Imperial system. The base unit is the cubic meter.
 
 use super::Volume;
-use crate::unit;
-use crate::Unit;
+use crate::{Unit, make_unit};
+use newnit_derive::{Unit, Volume};
 
 // Trivial cubes of units of length
-make_unit!(CubicInch, 0.0254 * 0.0254 * 0.0254, 0.0, Volume);
-make_unit!(CubicFoot, 0.3048 * 0.3048 * 0.3048, 0.0, Volume);
-make_unit!(CubicYard, 0.9144 * 0.9144 * 0.9144, 0.0, Volume);
-make_unit!(CubicChain, 20.1168 * 20.1168 * 20.1168, 0.0, Volume);
-make_unit!(CubicFurlong, 201.168 * 201.168 * 201.168, 0.0, Volume);
-make_unit!(CubicMile, 1_609.344 * 1_609.344 * 1_609.344, 0.0, Volume);
-make_unit!(CubicLeague, 4_828.032 * 4_828.032 * 4_828.032, 0.0, Volume);
+make_unit!(CubicInch, 64_121.997_435_587, 0.0, Volume);
+make_unit!(CubicFoot, 0.028_316_846_592, 0.0, Volume);
+make_unit!(CubicYard, 0.764_554_857_984, 0.0, Volume);
+make_unit!(CubicChain, 8_140.980_127_813_6, 0.0, Volume);
+make_unit!(CubicFurlong, 8_140_980.127_813_6, 0.0, Volume);
+make_unit!(CubicMile, 4_168_181_825.440_6, 0.0, Volume);
+make_unit!(CubicLeague, 112_540_909_286.9, 0.0, Volume);
 
 // Non-trivial units
 

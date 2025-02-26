@@ -10,8 +10,8 @@
 //! [`volume::imperial`]: super::imperial
 
 use super::Volume;
-use crate::unit;
-use crate::Unit;
+use crate::{Unit, make_unit};
+use newnit_derive::{Unit, Volume};
 
 // acre ft
 make_unit!(AcreFoot, 1_233.482, 0.0, Volume);
