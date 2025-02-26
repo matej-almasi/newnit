@@ -30,6 +30,7 @@ macro_rules! make_unit {
         #[derive(Unit, Debug, Clone, Copy, Default, $quantity_trait)]
         #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
         #[unit(factor = $factor, display)]
+        #[quantity(from, partial_eq, ops)]
         pub struct $name(pub f64);
     };
 }
