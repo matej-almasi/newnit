@@ -18,7 +18,8 @@ pub trait Time: Unit {
 
 pub mod metric {
     use super::Time;
-    use crate::{Unit, unit};
+    use crate::{Unit, make_unit};
+    use newnit_derive::{Time, Unit};
 
     make_unit!(QuettaSecond, 1E+30, 0.0, Time);
     make_unit!(RonnaSecond, 1E+27, 0.0, Time);
