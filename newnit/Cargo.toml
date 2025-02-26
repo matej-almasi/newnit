@@ -1,0 +1,13 @@
+[package]
+name = "newnit"
+version = "0.1.0"
+edition = "2024"
+description = ""
+repository = ""
+readme = "README.MD"
+license = "MIT OR Apache-2.0"
+keywords = []
+
+[dependencies]
+newnit_derive = { path = "../newnit_derive" }
+serde = { version = "1.0", optional = true, features = ["derive"] }

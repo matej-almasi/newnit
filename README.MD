@@ -133,18 +133,21 @@ units (or quantities) compatible with the rest of the library, you have to:
   - make sure your conversions to/ from the base unit match the ones in the
     library
 
-To make defining custom units easier, use the `unit!` macro:
+To make defining custom units easier, you can use a derive macro:
 
 ```rust
-use newnit::unit;
-use newnit::mass::Mass;
+use newnit::{Unit, mass::Mass};
+use newnit::derive::{Unit, Mass};
 
-unit!(Elephants, 6000.0, 0.0, Mass);
+#[derive(Unit, Mass)]
+#[unit(factor = 6000.0)]
+#[quantity(partial_eq, ops)]  // opt in to provided PartialEq and Ops implementations
+struct Elephants(f64);
 ```
 
 ## Installation
 
-Available from [crates.io](https://crates.io/crates/doru):
+Available from [crates.io](https://crates.io/crates/newnit):
 
 ```sh
 cargo add newnit

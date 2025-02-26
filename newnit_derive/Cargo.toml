@@ -1,0 +1,17 @@
+[package]
+name = "newnit_derive"
+version = "0.1.0"
+edition = "2024"
+keywords = ["derive"]
+
+[lib]
+proc-macro = true
+
+[dependencies]
+syn = "2.0"
+quote = "1.0"
+darling = "0.20.10"
+proc-macro2 = "1.0.93"
+
+[dev-dependencies]
+newnit = { path = "../newnit" }
