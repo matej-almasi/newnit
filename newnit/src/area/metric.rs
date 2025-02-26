@@ -8,8 +8,8 @@
 //! - the Are and the HectAre
 
 use super::Area;
-use crate::unit;
-use crate::Unit;
+use crate::{Unit, make_unit};
+use newnit_derive::{Area, Unit};
 
 // Trivial squares of units of length
 make_unit!(SquareQuettaMeter, 1E+60, 0.0, Area);
