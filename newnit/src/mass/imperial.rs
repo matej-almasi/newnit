@@ -6,7 +6,8 @@
 //! Additional aliases provided for commonly used alternative unit names.
 
 use super::Mass;
-use crate::{Unit, unit};
+use crate::{Unit, make_unit};
+use newnit_derive::{Mass, Unit};
 
 // Troy units (precious metals)
 // lb t

@@ -6,7 +6,8 @@
 //! Additional aliases provided for commonly used alternative unit names.
 
 use super::Mass;
-use crate::{Unit, unit};
+use crate::{Unit, make_unit};
+use newnit_derive::{Mass, Unit};
 
 make_unit!(QuettaGram, 1E+27, 0.0, Mass);
 make_unit!(RonnaGram, 1E+24, 0.0, Mass);

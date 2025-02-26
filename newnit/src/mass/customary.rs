@@ -8,7 +8,8 @@
 //! used, where possible.
 
 use super::Mass;
-use crate::{Unit, unit};
+use crate::{Unit, make_unit};
+use newnit_derive::{Mass, Unit};
 
 // Troy units (precious metals)
 pub use super::imperial::{Grain, Pennyweight, TroyOunce, TroyPound};
