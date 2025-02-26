@@ -3,6 +3,7 @@ use proc_macro::TokenStream;
 mod impl_quantity;
 
 mod area;
+mod current;
 mod length;
 mod mass;
 mod time;
@@ -58,4 +59,11 @@ pub fn time_derive(input: TokenStream) -> TokenStream {
     // TODO: better error message
     let ast = syn::parse(input).expect("Failed to parse input code.");
     time::derive(&ast)
+}
+
+#[proc_macro_derive(Current, attributes(current))]
+pub fn current_derive(input: TokenStream) -> TokenStream {
+    // TODO: better error message
+    let ast = syn::parse(input).expect("Failed to parse input code.");
+    current::derive(&ast)
 }

@@ -9,7 +9,8 @@ pub trait Current {}
 
 pub mod metric {
     use super::Current;
-    use crate::{Unit, unit};
+    use crate::{Unit, make_unit};
+    use newnit_derive::{Current, Unit};
 
     make_unit!(QuettaAmpere, 1E+30, 0.0, Current);
     make_unit!(RonnaAmpere, 1E+27, 0.0, Current);
