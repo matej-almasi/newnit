@@ -4,8 +4,8 @@
 //! the British Imperial system. The base unit is the meter.
 
 use super::Length;
-use crate::unit;
-use crate::Unit;
+use crate::{Unit, make_unit};
+use newnit_derive::{Length, Unit};
 
 make_unit!(Inch, 0.0254, 0.0, Length);
 make_unit!(Foot, 0.3048, 0.0, Length);
