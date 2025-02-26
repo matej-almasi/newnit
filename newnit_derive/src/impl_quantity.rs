@@ -3,6 +3,10 @@ use proc_macro::TokenStream;
 use proc_macro2::Ident;
 use quote::quote;
 
+/// Arguments for quantity trait derive macros
+///
+/// These arguments specify whether the derive macro should additionally derive
+/// [`From`], [`PartialEq`] and select [`std::ops`] traits respectively.
 #[derive(Debug, FromDeriveInput)]
 #[darling(attributes(quantity))]
 pub(crate) struct QuantityArgs {
@@ -14,6 +18,9 @@ pub(crate) struct QuantityArgs {
     ops: bool,
 }
 
+/// Provide impl of quantity for the given unit.
+///
+/// Additionally provide other impls (see [`QuantityArgs`]) specified in args.
 pub(crate) fn impl_quantity(unit: &Ident, quantity: &Ident, args: &QuantityArgs) -> TokenStream {
     let impl_from = args.from.then(|| {
         quote! {
