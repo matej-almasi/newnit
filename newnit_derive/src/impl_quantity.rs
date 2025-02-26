@@ -1,31 +1,33 @@
+use darling::FromDeriveInput;
 use proc_macro::TokenStream;
 use proc_macro2::Ident;
 use quote::quote;
 
-pub(crate) struct OtherImpls {
-    pub from: bool,
-    pub partial_eq: bool,
-    pub ops: bool,
+#[derive(Debug, FromDeriveInput)]
+#[darling(attributes(quantity))]
+pub(crate) struct QuantityArgs {
+    #[darling(default)]
+    from: bool,
+    #[darling(default)]
+    partial_eq: bool,
+    #[darling(default)]
+    ops: bool,
 }
 
-pub(crate) fn impl_quantity(
-    unit: &Ident,
-    quantity: &Ident,
-    other_impls: &OtherImpls,
-) -> TokenStream {
-    let impl_from = other_impls.from.then(|| {
+pub(crate) fn impl_quantity(unit: &Ident, quantity: &Ident, args: &QuantityArgs) -> TokenStream {
+    let impl_from = args.from.then(|| {
         quote! {
-            impl<T: #quantity> From<&T> for #unit {
+            impl<T: #quantity + Unit> From<&T> for #unit {
                 fn from(other: &T) -> Self {
-                    *Self::from_base(other.to_base())
+                    Self::from_base(other.to_base())
                 }
             }
         }
     });
 
-    let impl_partial_eq = other_impls.partial_eq.then(|| {
+    let impl_partial_eq = args.partial_eq.then(|| {
         quote! {
-            impl<T: #quantity> std::cmp::PartialEq<T> for #unit {
+            impl<T: #quantity + Unit> std::cmp::PartialEq<T> for #unit {
                 fn eq(&self, other: &T) -> bool {
                     self.to_base() == other.to_base()
                 }
@@ -33,23 +35,23 @@ pub(crate) fn impl_quantity(
         }
     });
 
-    let impl_ops = other_impls.ops.then(|| {
+    let impl_ops = args.ops.then(|| {
         quote! {
-            impl<T: #quantity> std::ops::Add<&T> for #unit {
+            impl<T: #quantity + Unit> std::ops::Add<&T> for #unit {
                 type Output = Self;
 
                 fn add(self, other: &T) -> Self::Output {
-                    *Self::from_base(self.to_base() + other.to_base())
+                    Self::from_base(self.to_base() + other.to_base())
                 }
             }
 
-            impl<T: #quantity> std::ops::AddAssign<&T> for #unit {
+            impl<T: #quantity + Unit> std::ops::AddAssign<&T> for #unit {
                 fn add_assign(&mut self, other: &T) {
                     self.0 = Self::from_base(self.to_base() + other.to_base()).value();
                 }
             }
 
-            impl<T: #quantity> std::ops::Div<&T> for #unit {
+            impl<T: #quantity + Unit> std::ops::Div<&T> for #unit {
                 type Output = f64;
 
                 fn div(self, other: &T) -> Self::Output {
@@ -101,15 +103,15 @@ pub(crate) fn impl_quantity(
                 }
             }
 
-            impl<T: #quantity> std::ops::Sub<&T> for #unit {
+            impl<T: #quantity + Unit> std::ops::Sub<&T> for #unit {
                 type Output = Self;
 
                 fn sub(self, other: &T) -> Self::Output {
-                    *Self::from_base(self.to_base() - other.to_base())
+                    Self::from_base(self.to_base() - other.to_base())
                 }
             }
 
-            impl<T> std::ops::SubAssign<&T> for #unit {
+            impl<T: #quantity + Unit> std::ops::SubAssign<&T> for #unit {
                 fn sub_assign(&mut self, other: &T) {
                     self.0 = Self::from_base(self.to_base() - other.to_base()).value();
                 }
