@@ -15,6 +15,7 @@ pub mod unit;
 pub mod velocity;
 pub mod volume;
 
-mod make_unit;
-
+pub use newnit_derive;
 pub use unit::Unit;
+
+mod make_unit;
