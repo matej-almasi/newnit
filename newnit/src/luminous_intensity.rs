@@ -10,7 +10,8 @@ pub trait LuminousIntensity {}
 
 pub mod metric {
     use super::LuminousIntensity;
-    use crate::{Unit, unit};
+    use crate::{Unit, make_unit};
+    use newnit_derive::{LuminousIntensity, Unit};
 
     make_unit!(QuettaCandela, 1E+30, 0.0, LuminousIntensity);
     make_unit!(RonnaCandela, 1E+27, 0.0, LuminousIntensity);

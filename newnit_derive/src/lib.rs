@@ -5,7 +5,10 @@ mod impl_quantity;
 mod area;
 mod current;
 mod length;
+mod luminous_intensity;
 mod mass;
+mod substance_amount;
+mod temperature;
 mod time;
 mod velocity;
 mod volume;
@@ -66,4 +69,25 @@ pub fn current_derive(input: TokenStream) -> TokenStream {
     // TODO: better error message
     let ast = syn::parse(input).expect("Failed to parse input code.");
     current::derive(&ast)
+}
+
+#[proc_macro_derive(LuminousIntensity, attributes(quantity))]
+pub fn luminous_intensity_derive(input: TokenStream) -> TokenStream {
+    // TODO: better error message
+    let ast = syn::parse(input).expect("Failed to parse input code.");
+    luminous_intensity::derive(&ast)
+}
+
+#[proc_macro_derive(SubstanceAmount, attributes(quantity))]
+pub fn substance_amount_derive(input: TokenStream) -> TokenStream {
+    // TODO: better error message
+    let ast = syn::parse(input).expect("Failed to parse input code.");
+    substance_amount::derive(&ast)
+}
+
+#[proc_macro_derive(Temperature, attributes(quantity))]
+pub fn temperature_derive(input: TokenStream) -> TokenStream {
+    // TODO: better error message
+    let ast = syn::parse(input).expect("Failed to parse input code.");
+    temperature::derive(&ast)
 }

@@ -10,7 +10,8 @@ pub trait SubstanceAmount {}
 
 pub mod metric {
     use super::SubstanceAmount;
-    use crate::{Unit, unit};
+    use crate::{Unit, make_unit};
+    use newnit_derive::{SubstanceAmount, Unit};
 
     make_unit!(QuettaMole, 1E+30, 0.0, SubstanceAmount);
     make_unit!(RonnaMole, 1E+27, 0.0, SubstanceAmount);

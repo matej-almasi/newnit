@@ -8,11 +8,17 @@
 
 pub trait Temperature {}
 
-pub use crate::{Unit, unit};
+use crate::{Unit, make_unit};
+use newnit_derive::{Temperature, Unit};
 
 make_unit!(Kelvin, 1.0, 0.0, Temperature);
 make_unit!(Celsius, 1.0, 273.15, Temperature);
-make_unit!(Fahrenheit, (5.0 / 9.0), (459.67 * 5.0 / 9.0), Temperature);
+make_unit!(
+    Fahrenheit,
+    5.555_555_555_555_555_6E-1,
+    255.372_222_222_222_22,
+    Temperature
+);
 
 #[cfg(test)]
 mod test {
