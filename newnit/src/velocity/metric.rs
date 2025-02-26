@@ -8,7 +8,8 @@
 //! m/s.
 
 use super::Velocity;
-use crate::{Unit, unit};
+use crate::{Unit, make_unit};
+use newnit_derive::{Unit, Velocity};
 
 make_unit!(QuettaMeterPerSecond, 1E+30, 0.0, Velocity);
 make_unit!(RonnaMeterPerSecond, 1E+27, 0.0, Velocity);
@@ -36,4 +37,4 @@ make_unit!(QuectoMeterPerSecond, 1E-30, 0.0, Velocity);
 
 make_unit!(AngstromPerSecond, 1E-10, 0.0, Velocity);
 
-make_unit!(KiloMeterPerHour, 1E+3 / 3_600.0, 0.0, Velocity);
+make_unit!(KiloMeterPerHour, 2.777_777_777_777_777_8E-1, 0.0, Velocity);

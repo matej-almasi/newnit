@@ -5,6 +5,7 @@ mod impl_quantity;
 mod area;
 mod length;
 mod mass;
+mod velocity;
 mod volume;
 
 mod unit;
@@ -42,4 +43,11 @@ pub fn mass_derive(input: TokenStream) -> TokenStream {
     // TODO: better error message
     let ast = syn::parse(input).expect("Failed to parse input code.");
     mass::derive(&ast)
+}
+
+#[proc_macro_derive(Velocity, attributes(velocity))]
+pub fn velocity_derive(input: TokenStream) -> TokenStream {
+    // TODO: better error message
+    let ast = syn::parse(input).expect("Failed to parse input code.");
+    velocity::derive(&ast)
 }

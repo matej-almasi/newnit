@@ -7,7 +7,8 @@
 //! [IAU]: https://www.iau.org/
 
 use super::Velocity;
-use crate::{Unit, unit};
+use crate::{Unit, make_unit};
+use newnit_derive::{Unit, Velocity};
 
 make_unit!(MegaParsecPerSecond, 3.085_677_581_491_37E+22, 0.0, Velocity);
 make_unit!(KiloParsecPerSecond, 3.085_677_581_491_37E+19, 0.0, Velocity);

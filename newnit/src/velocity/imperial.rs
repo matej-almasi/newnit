@@ -5,8 +5,8 @@
 //! the meter per second.
 
 use super::Velocity;
-use crate::unit;
-use crate::Unit;
+use crate::{Unit, make_unit};
+use newnit_derive::{Unit, Velocity};
 
 make_unit!(InchPerSecond, 0.0254, 0.0, Velocity);
 make_unit!(FootPerSecond, 0.3048, 0.0, Velocity);
