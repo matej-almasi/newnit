@@ -8,7 +8,7 @@ use crate::{Unit, make_unit};
 use newnit_derive::{Unit, Volume};
 
 // Trivial cubes of units of length
-make_unit!(CubicInch, 64_121.997_435_587, Volume);
+make_unit!(CubicInch, 0.163_870_64E-4, Volume);
 make_unit!(CubicFoot, 0.028_316_846_592, Volume);
 make_unit!(CubicYard, 0.764_554_857_984, Volume);
 make_unit!(CubicChain, 8_140.980_127_813_6, Volume);
