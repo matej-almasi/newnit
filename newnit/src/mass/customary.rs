@@ -20,13 +20,13 @@ pub use super::imperial::{Grain, Pennyweight, TroyOunce, TroyPound};
 pub type LongTon = super::imperial::LongTon;
 
 // short ton
-make_unit!(ShortTon, 907.184_74, 0.0, Mass);
+make_unit!(ShortTon, 907.184_74, Mass);
 
 // long cwt
 pub type LongHundredweight = super::imperial::Hundredweight;
 
 // US cwt
-make_unit!(ShortHundredweight, 45.359_237, 0.0, Mass);
+make_unit!(ShortHundredweight, 45.359_237, Mass);
 
 pub use super::imperial::{Ounce, Pound};
 

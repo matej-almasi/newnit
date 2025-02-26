@@ -11,7 +11,7 @@ pub trait Temperature {}
 use crate::{Unit, make_unit};
 use newnit_derive::{Temperature, Unit};
 
-make_unit!(Kelvin, 1.0, 0.0, Temperature);
+make_unit!(Kelvin, 1.0, Temperature);
 make_unit!(Celsius, 1.0, 273.15, Temperature);
 make_unit!(
     Fahrenheit,

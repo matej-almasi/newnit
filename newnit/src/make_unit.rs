@@ -18,4 +18,12 @@ macro_rules! make_unit {
         #[quantity(from, partial_eq, ops)]
         pub struct $name(pub f64);
     };
+
+    ($name:ident, $factor: expr, $quantity_trait:ident) => {
+        #[derive(Unit, Debug, Clone, Copy, Default, $quantity_trait)]
+        #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+        #[unit(factor = $factor, display)]
+        #[quantity(from, partial_eq, ops)]
+        pub struct $name(pub f64);
+    };
 }

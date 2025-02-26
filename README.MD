@@ -139,7 +139,7 @@ To make defining custom units easier, use the `make_unit!` macro:
 use newnit::unit;
 use newnit::mass::Mass;
 
-make_unit!(Elephants, 6000.0, 0.0, Mass);
+make_unit!(Elephants, 6000.0, Mass);
 ```
 
 ## Installation
