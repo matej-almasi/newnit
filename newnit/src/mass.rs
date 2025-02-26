@@ -10,8 +10,8 @@
 //!
 //! # Examples
 //! ```
-//! use newnit::mass::{self, Mass};
 //! use newnit::Unit;
+//! use newnit::mass::{self, Mass};
 //!
 //! // Create a new mass value in pounds
 //! let mass = mass::imperial::Pound(2.0);
