@@ -35,7 +35,7 @@ mod test {
         let length = crate::length::imperial::Foot(3.0);
 
         let volume = area.multiply_length(&length);
-        assert!((volume.value() - 1.8288).abs() < 1e-5);
+        assert!((volume.to_value() - 1.8288).abs() < 1e-5);
     }
 
     #[test]
@@ -44,6 +44,6 @@ mod test {
         let length = crate::length::metric::Meter(4.0);
 
         let result_length = area.divide_length(&length);
-        assert!((result_length.value() - 0.5).abs() < 1e-5);
+        assert!((result_length.to_value() - 0.5).abs() < 1e-5);
     }
 }

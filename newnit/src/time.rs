@@ -61,6 +61,6 @@ mod test {
         let velocity = crate::velocity::imperial::MilePerHour(3.0);
 
         let length = time.multiply_velocity(&velocity);
-        assert!((length.value() - 9656.064).abs() < 1e-5);
+        assert!((length.to_value() - 9656.064).abs() < 1e-5);
     }
 }

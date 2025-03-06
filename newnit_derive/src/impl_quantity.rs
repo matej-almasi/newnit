@@ -54,7 +54,7 @@ pub(crate) fn impl_quantity(unit: &Ident, quantity: &Ident, args: &QuantityArgs)
 
             impl<T: #quantity + Unit> std::ops::AddAssign<&T> for #unit {
                 fn add_assign(&mut self, other: &T) {
-                    self.0 = Self::from_base(self.to_base() + other.to_base()).value();
+                    self.0 = Self::from_base(self.to_base() + other.to_base()).to_value();
                 }
             }
 
@@ -70,7 +70,7 @@ pub(crate) fn impl_quantity(unit: &Ident, quantity: &Ident, args: &QuantityArgs)
                 type Output = Self;
 
                 fn div(self, rhs: f64) -> Self::Output {
-                    Self(self.value() / rhs)
+                    Self(self.to_value() / rhs)
                 }
             }
 
@@ -84,7 +84,7 @@ pub(crate) fn impl_quantity(unit: &Ident, quantity: &Ident, args: &QuantityArgs)
                 type Output = Self;
 
                 fn mul(self, rhs: f64) -> Self::Output {
-                    Self(self.value() * rhs)
+                    Self(self.to_value() * rhs)
                 }
             }
 
@@ -92,7 +92,7 @@ pub(crate) fn impl_quantity(unit: &Ident, quantity: &Ident, args: &QuantityArgs)
                 type Output = #unit;
 
                 fn mul(self, rhs: #unit) -> Self::Output {
-                    #unit(self * rhs.value())
+                    #unit(self * rhs.to_value())
                 }
             }
 
@@ -106,7 +106,7 @@ pub(crate) fn impl_quantity(unit: &Ident, quantity: &Ident, args: &QuantityArgs)
                 type Output = Self;
 
                 fn neg(self) -> Self::Output {
-                    Self(-self.value())
+                    Self(-self.to_value())
                 }
             }
 
@@ -120,7 +120,7 @@ pub(crate) fn impl_quantity(unit: &Ident, quantity: &Ident, args: &QuantityArgs)
 
             impl<T: #quantity + Unit> std::ops::SubAssign<&T> for #unit {
                 fn sub_assign(&mut self, other: &T) {
-                    self.0 = Self::from_base(self.to_base() - other.to_base()).value();
+                    self.0 = Self::from_base(self.to_base() - other.to_base()).to_value();
                 }
             }
 

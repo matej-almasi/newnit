@@ -40,6 +40,6 @@ mod test {
         let time = crate::time::metric::Hour(3.0);
 
         let length = velocity.multiply_time(&time);
-        assert!((length.value() - 21600.0).abs() < 1e-5);
+        assert!((length.to_value() - 21600.0).abs() < 1e-5);
     }
 }

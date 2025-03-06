@@ -39,7 +39,7 @@ pub mod nautical;
 /// let length2 = Foot(2.0);
 ///
 /// let area = length1.multiply(&length2);
-/// assert!((area.value() - 2.4384).abs() < 1e-5);
+/// assert!((area.to_value() - 2.4384).abs() < 1e-5);
 /// ```
 pub trait Length: Unit {
     /// Multiply two units of length.
@@ -73,7 +73,7 @@ mod test {
         let length2 = imperial::Foot(3.0);
 
         let area = length1.multiply(&length2);
-        assert!((area.value() - 1.8288).abs() < 1e-5);
+        assert!((area.to_value() - 1.8288).abs() < 1e-5);
     }
 
     #[test]
@@ -82,7 +82,7 @@ mod test {
         let area = crate::area::imperial::SquareInch(2.0);
 
         let volume = length.multiply_area(&area);
-        assert!((volume.value() - 2.58064e-3).abs() < 1e-9);
+        assert!((volume.to_value() - 2.58064e-3).abs() < 1e-9);
     }
 
     #[test]
@@ -91,7 +91,7 @@ mod test {
         let time = crate::time::metric::Second(3.0);
 
         let velocity = length.divide_time(&time);
-        assert!((velocity.value() - 0.66667).abs() < 1e-5);
+        assert!((velocity.to_value() - 0.66667).abs() < 1e-5);
     }
 
     #[test]
@@ -100,6 +100,6 @@ mod test {
         let velocity = crate::velocity::metric::MeterPerSecond(3.0);
 
         let time = length.divide_velocity(&velocity);
-        assert!((time.value() - 0.66667).abs() < 1e-5);
+        assert!((time.to_value() - 0.66667).abs() < 1e-5);
     }
 }

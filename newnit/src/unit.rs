@@ -16,7 +16,7 @@ pub trait Unit {
     fn to_base(&self) -> f64;
 
     /// Returns the wrapped [`f64`] value.
-    fn value(&self) -> f64;
+    fn to_value(&self) -> f64;
 
     /// Create a representation of a quantity expressed in this unit from its
     /// value in base units.

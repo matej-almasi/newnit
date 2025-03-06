@@ -25,7 +25,7 @@ pub fn derive(ast: &syn::DeriveInput) -> TokenStream {
         quote! {
             impl std::fmt::Display for #name {
                 fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                    write!(f, "{} {}", self.value(), stringify!(#name))
+                    write!(f, "{} {}", self.to_value(), stringify!(#name))
                 }
             }
 
@@ -35,10 +35,10 @@ pub fn derive(ast: &syn::DeriveInput) -> TokenStream {
     let generated = quote! {
         impl Unit for #name {
             fn to_base(&self) -> f64 {
-                self.value() * #factor + #offset
+                self.to_value() * #factor + #offset
             }
 
-            fn value(&self) -> f64 {
+            fn to_value(&self) -> f64 {
                 self.0
             }
 
