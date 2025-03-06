@@ -12,7 +12,7 @@
 #[macro_export]
 macro_rules! make_unit {
     ($name:ident, $factor: expr, $offset: expr, $quantity_trait:ident) => {
-        #[derive(Unit, PartialEq, Debug, Clone, Copy, Default, $quantity_trait)]
+        #[derive(Unit, Copy, Clone, PartialEq, PartialOrd, Debug, Default, $quantity_trait)]
         #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
         #[unit(factor = $factor, offset = $offset, display)]
         #[quantity(from, ops)]
@@ -20,7 +20,7 @@ macro_rules! make_unit {
     };
 
     ($name:ident, $factor: expr, $quantity_trait:ident) => {
-        #[derive(Unit, PartialEq, Debug, Clone, Copy, Default, $quantity_trait)]
+        #[derive(Unit, Copy, Clone, PartialEq, PartialOrd, Debug, Default, $quantity_trait)]
         #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
         #[unit(factor = $factor, display)]
         #[quantity(from, ops)]
