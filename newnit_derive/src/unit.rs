@@ -15,7 +15,6 @@ struct UnitArgs {
 }
 
 pub fn derive(ast: &syn::DeriveInput) -> TokenStream {
-    // TODO: better error message
     let args = UnitArgs::from_derive_input(ast).expect("Missing factor for unit conversion.");
 
     let name = &ast.ident;
