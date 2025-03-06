@@ -13,8 +13,6 @@ pub(crate) struct QuantityArgs {
     #[darling(default)]
     from: bool,
     #[darling(default)]
-    partial_eq: bool,
-    #[darling(default)]
     ops: bool,
 }
 
@@ -27,16 +25,6 @@ pub(crate) fn impl_quantity(unit: &Ident, quantity: &Ident, args: &QuantityArgs)
             impl<T: #quantity + Unit> From<&T> for #unit {
                 fn from(other: &T) -> Self {
                     Self::from_base(other.to_base())
-                }
-            }
-        }
-    });
-
-    let impl_partial_eq = args.partial_eq.then(|| {
-        quote! {
-            impl<T: #quantity + Unit> std::cmp::PartialEq<T> for #unit {
-                fn eq(&self, other: &T) -> bool {
-                    self.to_base() == other.to_base()
                 }
             }
         }
@@ -131,8 +119,6 @@ pub(crate) fn impl_quantity(unit: &Ident, quantity: &Ident, args: &QuantityArgs)
         impl #quantity for #unit {}
 
         #impl_from
-
-        #impl_partial_eq
 
         #impl_ops
 

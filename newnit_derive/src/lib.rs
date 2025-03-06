@@ -78,7 +78,7 @@ pub fn unit_derive(input: TokenStream) -> TokenStream {
 ///
 /// #[derive(Unit, Length)]
 /// #[unit(factor = 0.0254)] // 1 inch is 0.0254 meters
-/// #[quantity(partial_eq, ops)]  // opt in to provided PartialEq and Ops implementations, but no to the From implementation
+/// #[quantity(ops)]  // opt in to provided Ops implementations, but not to the From implementation
 /// struct Inch(f64);
 ///
 /// let length = Inch(42.0);
@@ -118,7 +118,7 @@ pub fn length_derive(input: TokenStream) -> TokenStream {
 ///
 /// #[derive(Unit, Area)]
 /// #[unit(factor = 0.000_645_16)] // 1 square inch is 0.000_645_16 square meters
-/// #[quantity(partial_eq, ops)]  // opt in to provided PartialEq and Ops implementations, but no to the From implementation
+/// #[quantity(ops)]  // opt in to provided Ops implementations, but not to the From implementation
 /// struct SquareInch(f64);
 ///
 /// let area = SquareInch(42.0);
@@ -158,7 +158,7 @@ pub fn area_derive(input: TokenStream) -> TokenStream {
 ///
 /// #[derive(Unit, Volume)]
 /// #[unit(factor = 0.16387064E-4)] // 1 cubic inch is 0.16387064E-4 cubic meters
-/// #[quantity(partial_eq, ops)]  // opt in to provided PartialEq and Ops implementations, but no to the From implementation
+/// #[quantity(ops)]  // opt in to provided Ops implementations, but not to the From implementation
 /// struct CubicInch(f64);
 ///
 /// let volume = CubicInch(42.0);
@@ -198,7 +198,7 @@ pub fn volume_derive(input: TokenStream) -> TokenStream {
 ///
 /// #[derive(Unit, Mass)]
 /// #[unit(factor = 0.453_592_37)] // 1 pound is 0.453_592_37 kilograms
-/// #[quantity(partial_eq, ops)]  // opt in to provided PartialEq and Ops implementations, but no to the From implementation
+/// #[quantity(ops)]  // opt in to provided Ops implementations, but not to the From implementation
 /// struct Pound(f64);
 ///
 /// let mass = Pound(42.0);
@@ -238,7 +238,7 @@ pub fn mass_derive(input: TokenStream) -> TokenStream {
 ///
 /// #[derive(Unit, Velocity)]
 /// #[unit(factor = 0.44704)] // 1 MPH is 0.44704 MPS
-/// #[quantity(partial_eq, ops)]  // opt in to provided PartialEq and Ops implementations, but no to the From implementation
+/// #[quantity(ops)]  // opt in to provided Ops implementations, but not to the From implementation
 /// struct MilePerHour(f64);
 ///
 /// let velocity = MilePerHour(42.0);
@@ -278,7 +278,7 @@ pub fn velocity_derive(input: TokenStream) -> TokenStream {
 ///
 /// #[derive(Unit, Time)]
 /// #[unit(factor = 3600.0)] // 1 hour is 3600.0 seconds
-/// #[quantity(partial_eq, ops)]  // opt in to provided PartialEq and Ops implementations, but no to the From implementation
+/// #[quantity(ops)]  // opt in to provided Ops implementations, but not to the From implementation
 /// struct Hour(f64);
 ///
 /// let time = Hour(42.0);
@@ -318,7 +318,7 @@ pub fn time_derive(input: TokenStream) -> TokenStream {
 ///
 /// #[derive(Unit, Current)]
 /// #[unit(factor = 1E+3)] // 1 kA is 1000 Amperes
-/// #[quantity(partial_eq, ops)]  // opt in to provided PartialEq and Ops implementations, but no to the From implementation
+/// #[quantity(ops)]  // opt in to provided Ops implementations, but not to the From implementation
 /// struct KiloAmpere(f64);
 ///
 /// let current = KiloAmpere(42.0);
@@ -358,7 +358,7 @@ pub fn current_derive(input: TokenStream) -> TokenStream {
 ///
 /// #[derive(Unit, LuminousIntensity)]
 /// #[unit(factor = 1E-3)] // 1 mcd is 0.001 cd
-/// #[quantity(partial_eq, ops)]  // opt in to provided PartialEq and Ops implementations, but no to the From implementation
+/// #[quantity(ops)]  // opt in to provided Ops implementations, but not to the From implementation
 /// struct MilliCandela(f64);
 ///
 /// let luminous_intensity = MilliCandela(42.0);
@@ -398,7 +398,7 @@ pub fn luminous_intensity_derive(input: TokenStream) -> TokenStream {
 ///
 /// #[derive(Unit, SubstanceAmount)]
 /// #[unit(factor = 1E+18)] // 1 Emol is 3600.0 mols
-/// #[quantity(partial_eq, ops)]  // opt in to provided PartialEq and Ops implementations, but no to the From implementation
+/// #[quantity(ops)]  // opt in to provided Ops implementations, but not to the From implementation
 /// struct ExaMole(f64);
 ///
 /// let substance_amount = ExaMole(42.0);
@@ -438,7 +438,7 @@ pub fn substance_amount_derive(input: TokenStream) -> TokenStream {
 ///
 /// #[derive(Unit, Temperature)]
 /// #[unit(factor = 0.556, offset = 255.372)] // 1˚F is around 0.556 + 255.372 K
-/// #[quantity(partial_eq, ops)]  // opt in to provided PartialEq and Ops implementations, but no to the From implementation
+/// #[quantity(ops)]  // opt in to provided Ops implementations, but not to the From implementation
 /// struct Fahrenheit(f64);
 ///
 /// let temperature = Fahrenheit(42.0);

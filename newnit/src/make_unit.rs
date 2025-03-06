@@ -12,18 +12,18 @@
 #[macro_export]
 macro_rules! make_unit {
     ($name:ident, $factor: expr, $offset: expr, $quantity_trait:ident) => {
-        #[derive(Unit, Debug, Clone, Copy, Default, $quantity_trait)]
+        #[derive(Unit, PartialEq, Debug, Clone, Copy, Default, $quantity_trait)]
         #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
         #[unit(factor = $factor, offset = $offset, display)]
-        #[quantity(from, partial_eq, ops)]
+        #[quantity(from, ops)]
         pub struct $name(pub f64);
     };
 
     ($name:ident, $factor: expr, $quantity_trait:ident) => {
-        #[derive(Unit, Debug, Clone, Copy, Default, $quantity_trait)]
+        #[derive(Unit, PartialEq, Debug, Clone, Copy, Default, $quantity_trait)]
         #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
         #[unit(factor = $factor, display)]
-        #[quantity(from, partial_eq, ops)]
+        #[quantity(from, ops)]
         pub struct $name(pub f64);
     };
 }
