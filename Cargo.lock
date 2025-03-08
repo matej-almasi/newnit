@@ -62,7 +62,6 @@ name = "newnit_derive"
 version = "0.1.0"
 dependencies = [
  "darling",
- "newnit",
  "proc-macro2",
  "quote",
  "syn",

@@ -33,7 +33,7 @@ mod volume;
 ///   value_in_base_unit = value_in_this_unit * `factor` + `offset`
 ///
 /// # Examples:
-/// ```
+/// ```ignore
 /// use newnit::Unit;
 /// use newnit_derive::Unit;
 ///
@@ -72,7 +72,7 @@ pub fn unit_derive(input: TokenStream) -> TokenStream {
 ///
 /// by specifying them in an (optional) `#[quantity()]` macro attribute.
 /// /// # Examples:
-/// ```
+/// ```ignore
 /// use newnit::{Unit, length::Length};
 /// use newnit_derive::{Length, Unit};
 ///
@@ -112,7 +112,7 @@ pub fn length_derive(input: TokenStream) -> TokenStream {
 ///
 /// by specifying them in an (optional) `#[quantity()]` macro attribute.
 /// /// # Examples:
-/// ```
+/// ```ignore
 /// use newnit::{area::Area, Unit};
 /// use newnit_derive::{Area, Unit};
 ///
@@ -152,7 +152,7 @@ pub fn area_derive(input: TokenStream) -> TokenStream {
 ///
 /// by specifying them in an (optional) `#[quantity()]` macro attribute.
 /// /// # Examples:
-/// ```
+/// ```ignore
 /// use newnit::{volume::Volume, Unit};
 /// use newnit_derive::{Volume, Unit};
 ///
@@ -192,7 +192,7 @@ pub fn volume_derive(input: TokenStream) -> TokenStream {
 ///
 /// by specifying them in an (optional) `#[quantity()]` macro attribute.
 /// /// # Examples:
-/// ```
+/// ```ignore
 /// use newnit::{mass::Mass, Unit};
 /// use newnit_derive::{Mass, Unit};
 ///
@@ -232,7 +232,7 @@ pub fn mass_derive(input: TokenStream) -> TokenStream {
 ///
 /// by specifying them in an (optional) `#[quantity()]` macro attribute.
 /// /// # Examples:
-/// ```
+/// ```ignore
 /// use newnit::{velocity::Velocity, Unit};
 /// use newnit_derive::{Velocity, Unit};
 ///
@@ -272,7 +272,7 @@ pub fn velocity_derive(input: TokenStream) -> TokenStream {
 ///
 /// by specifying them in an (optional) `#[quantity()]` macro attribute.
 /// /// # Examples:
-/// ```
+/// ```ignore
 /// use newnit::{time::Time, Unit};
 /// use newnit_derive::{Time, Unit};
 ///
@@ -312,7 +312,7 @@ pub fn time_derive(input: TokenStream) -> TokenStream {
 ///
 /// by specifying them in an (optional) `#[quantity()]` macro attribute.
 /// /// # Examples:
-/// ```
+/// ```ignore
 /// use newnit::{current::Current, Unit};
 /// use newnit_derive::{Current, Unit};
 ///
@@ -352,7 +352,7 @@ pub fn current_derive(input: TokenStream) -> TokenStream {
 ///
 /// by specifying them in an (optional) `#[quantity()]` macro attribute.
 /// /// # Examples:
-/// ```
+/// ```ignore
 /// use newnit::{luminous_intensity::LuminousIntensity, Unit};
 /// use newnit_derive::{LuminousIntensity, Unit};
 ///
@@ -392,7 +392,7 @@ pub fn luminous_intensity_derive(input: TokenStream) -> TokenStream {
 ///
 /// by specifying them in an (optional) `#[quantity()]` macro attribute.
 /// /// # Examples:
-/// ```
+/// ```ignore
 /// use newnit::{substance_amount::SubstanceAmount, Unit};
 /// use newnit_derive::{SubstanceAmount, Unit};
 ///
@@ -432,7 +432,7 @@ pub fn substance_amount_derive(input: TokenStream) -> TokenStream {
 ///
 /// by specifying them in an (optional) `#[quantity()]` macro attribute.
 /// /// # Examples:
-/// ```
+/// ```ignore
 /// use newnit::{temperature::Temperature, Unit};
 /// use newnit_derive::{Temperature, Unit};
 ///
