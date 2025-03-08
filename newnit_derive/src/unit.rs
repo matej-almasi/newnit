@@ -42,6 +42,14 @@ pub fn derive(ast: &syn::DeriveInput) -> TokenStream {
                 self.0
             }
 
+            fn set_value(&mut self, value: f64) {
+                self.0 = value;
+            }
+
+            fn set_from_base(&mut self, base: f64) {
+                self.0 = (base - #offset) / #factor;
+            }
+
             fn from_base(base: f64) -> Self {
                 Self((base - #offset) / #factor)
             }

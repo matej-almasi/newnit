@@ -18,6 +18,13 @@ pub trait Unit {
     /// Returns the wrapped [`f64`] value.
     fn to_value(&self) -> f64;
 
+    /// Set the wrapped value to the passed [`f64`] value
+    fn set_value(&mut self, value: f64);
+
+    /// Set the wrapped value to one obtained by converting the passed [`f64`],
+    /// assuming the passed value is in base units.
+    fn set_from_base(&mut self, base: f64);
+
     /// Create a representation of a quantity expressed in this unit from its
     /// value in base units.
     fn from_base(base: f64) -> Self
