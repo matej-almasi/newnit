@@ -3,6 +3,9 @@ name = "newnit_derive"
 version = "0.1.0"
 edition = "2024"
 description = "A derive macro package for the Newnit library."
+repository = "https://github.com/matej-almasi/newnit/newnit_derive"
+readme = "README.MD"
+license = "MIT OR Apache-2.0"
 keywords = ["derive", "newtype", "unit", "quantity", "measurement", "physics"]
 
 [lib]
