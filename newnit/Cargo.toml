@@ -9,5 +9,5 @@ license = "MIT OR Apache-2.0"
 keywords = ["newtype", "unit", "quantity", "measurement", "physics"]
 
 [dependencies]
-newnit_derive = { path = "../newnit_derive" }
+newnit_derive = { version = "0.1.0", path = "../newnit_derive" }
 serde = { version = "1.0", optional = true, features = ["derive"] }
