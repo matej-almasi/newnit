@@ -2,11 +2,11 @@
 name = "newnit"
 version = "0.1.0"
 edition = "2024"
-description = ""
-repository = ""
+description = "A rich newtype library for units of quantity."
+repository = "https://github.com/matej-almasi/newnit/newnit"
 readme = "README.MD"
 license = "MIT OR Apache-2.0"
-keywords = []
+keywords = ["newtype", "unit", "quantity", "measurement", "physics"]
 
 [dependencies]
 newnit_derive = { path = "../newnit_derive" }
