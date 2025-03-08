@@ -6,7 +6,9 @@
 //!
 //! [`Candela`]: metric::Candela
 
-pub trait LuminousIntensity {}
+use crate::Unit;
+
+pub trait LuminousIntensity: Unit {}
 
 pub mod metric {
     use super::LuminousIntensity;

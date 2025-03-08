@@ -5,7 +5,9 @@
 //!
 //! [`Ampere`]: metric::Ampere
 
-pub trait Current {}
+use crate::Unit;
+
+pub trait Current: Unit {}
 
 pub mod metric {
     use super::Current;

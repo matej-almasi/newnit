@@ -22,9 +22,11 @@
 //! assert!((grams.to_value() - 907.1847).abs() < 1e-4);
 //! ```
 
+use crate::Unit;
+
 pub mod customary;
 pub mod imperial;
 pub mod metric;
 
 /// Marker trait for mass units.
-pub trait Mass {}
+pub trait Mass: Unit {}

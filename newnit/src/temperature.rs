@@ -6,7 +6,7 @@
 //!
 //! The base unit is the [`Kelvin`].
 
-pub trait Temperature {}
+pub trait Temperature: Unit {}
 
 use crate::{Unit, make_unit};
 use newnit_derive::{Temperature, Unit};

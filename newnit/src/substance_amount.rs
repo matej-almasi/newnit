@@ -6,7 +6,9 @@
 //!
 //! [`Mole`]: metric::Mole
 
-pub trait SubstanceAmount {}
+use crate::Unit;
+
+pub trait SubstanceAmount: Unit {}
 
 pub mod metric {
     use super::SubstanceAmount;
