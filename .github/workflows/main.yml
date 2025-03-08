@@ -4,21 +4,9 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - "src"
-      - "Cargo*"
-      - ".cargo"
-      - ".github/workflows/main.yml"
-      - "rustfmt.toml"
   push:
     branches:
       - main
-    paths:
-      - "src"
-      - "Cargo*"
-      - ".cargo"
-      - ".github/workflows/main.yml"
-      - "rustfmt.toml"
 
 env:
   CARGO_TERM_COLOR: always
