@@ -54,7 +54,7 @@ use newnit::area::imperial::SquareFoot;
 
 fn main() {
     let bathroom_area = SquareMeter(6.0);
-    let bathroom_area_in_feet = Foot::from(&bathroom_area);
+    let bathroom_area_in_sq_feet = SquareFoot::from(&bathroom_area);
 }
 ```
 
@@ -110,6 +110,7 @@ You can even multiply and divide units between each other, if such operation is
 recognized by the library (or extended ad hoc by the user).
 
 ```rust
+use newnit::length::Length;
 use newnit::length::metric::Meter;
 use newnit::time::metric::Second;
 use newnit::velocity::metric::MeterPerSecond;
