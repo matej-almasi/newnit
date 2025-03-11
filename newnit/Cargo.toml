@@ -1,6 +1,6 @@
 [package]
 name = "newnit"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2024"
 description = "A rich newtype library for units of quantity."
 repository = "https://github.com/matej-almasi/newnit/tree/main/newnit"
