@@ -1,0 +1,17 @@
+[package]
+name = "newnit_convert"
+version = "0.1.0"
+edition = "2024"
+description = "A CLI unit conversion utility."
+repository = "https://github.com/matej-almasi/newnit/newnit_convert"
+readme = "README.MD"
+license = "MIT OR Apache-2.0"
+keywords = ["cli", "unit", "quantity", "measurement", "conversion"]
+
+[[bin]]
+name = "convert"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4.5.31", features = ["derive"] }
+newnit = { version = "^0.1.1", path = "../newnit" }

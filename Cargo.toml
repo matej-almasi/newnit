@@ -1,3 +1,3 @@
 [workspace]
 resolver = "3"
-members = ["newnit", "newnit_derive"]
+members = ["newnit", "newnit_convert", "newnit_derive"]
