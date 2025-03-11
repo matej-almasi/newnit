@@ -158,6 +158,12 @@ cargo add newnit
 
 Available at [docs.rs](https://docs.rs/newnit).
 
+## Example unit conversion CLI
+
+You can check out a small example project using the library to build a unit
+conversion CLI [here](/newnit_convert), or try it out directly in your CLI
+(download a [release](https://github.com/matej-almasi/newnit/releases/latest)).
+
 ## License
 
 Licensed under either of
