@@ -1,1 +1,1 @@
-/home/matej/Projects/newnit/README.MD
+../README.MD
