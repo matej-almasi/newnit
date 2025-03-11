@@ -2,6 +2,11 @@
 name = "newnit_convert"
 version = "0.1.0"
 edition = "2024"
+description = "A CLI unit conversion utility."
+repository = "https://github.com/matej-almasi/newnit/newnit_convert"
+readme = "README.MD"
+license = "MIT OR Apache-2.0"
+keywords = ["cli", "unit", "quantity", "measurement", "conversion"]
 
 [[bin]]
 name = "convert"
