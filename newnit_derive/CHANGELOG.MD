@@ -1,1 +1,1 @@
-/home/matej/Projects/newnit/CHANGELOG.MD
+../CHANGELOG.MD
